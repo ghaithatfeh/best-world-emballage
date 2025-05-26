@@ -1,0 +1,1 @@
+export { AboutUsByAnima } from "./AboutUsByAnima";

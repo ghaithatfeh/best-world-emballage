@@ -1,0 +1,1 @@
+export { BottomSectionByAnima } from "./BottomSectionByAnima";
