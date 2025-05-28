@@ -2,21 +2,22 @@ import {
 	DropdownMenu,
 	DropdownMenuTrigger,
 	DropdownMenuContent,
-	DropdownMenuLabel,
-	DropdownMenuSeparator,
 	DropdownMenuItem,
-} from "@radix-ui/react-dropdown-menu";
-import {
-	NavigationMenu,
-	NavigationMenuList,
-	NavigationMenuItem,
-	NavigationMenuTrigger,
-	NavigationMenuContent,
-	NavigationMenuLink,
-} from "@radix-ui/react-navigation-menu";
+} from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
 import { GrLanguage } from "react-icons/gr";
+import {
+	Sheet,
+	SheetTrigger,
+	SheetContent,
+	SheetHeader,
+	SheetTitle,
+	SheetDescription,
+	SheetClose,
+	SheetFooter,
+} from "@/components/ui/sheet";
+import { MenuIcon, X } from "lucide-react";
 
 const Header = () => {
 	// Navigation menu items
@@ -86,19 +87,19 @@ const Header = () => {
 					</ul>
 				</nav>
 				<div className="hidden md:flex items-center gap-4">
-					<Link href="#" target="_blank">
-						<FaFacebook className="w-5 h-5 text-white" />
-					</Link>
-					<Link href="#" target="_blank">
-						<FaInstagram className="w-5 h-5 text-white" />
-					</Link>
-					<Link href="#" target="_blank">
-						<FaLinkedin className="w-5 h-5 text-white" />
-					</Link>
+					<a href="#" target="_blank" rel="noopener noreferrer">
+						<FaFacebook className="w-5 h-5 text-white hover:text-blue-400 transition" />
+					</a>
+					<a href="#" target="_blank" rel="noopener noreferrer">
+						<FaInstagram className="w-5 h-5 text-white hover:text-pink-400 transition" />
+					</a>
+					<a href="#" target="_blank" rel="noopener noreferrer">
+						<FaLinkedin className="w-5 h-5 text-white hover:text-blue-400 transition" />
+					</a>
 
 					<DropdownMenu>
-						<DropdownMenuTrigger className="text-white flex items-center gap-2">
-                            <GrLanguage className="w-5 h-5" />
+						<DropdownMenuTrigger className="text-white flex items-center gap-2 outline-none hover:text-red-500 transition">
+							<GrLanguage className="w-5 h-5" />
 							EN
 						</DropdownMenuTrigger>
 						<DropdownMenuContent className="bg-white p-3 flex flex-col gap-2">
@@ -108,6 +109,77 @@ const Header = () => {
 						</DropdownMenuContent>
 					</DropdownMenu>
 				</div>
+
+				<Sheet>
+					<SheetTrigger className="md:hidden">
+						<MenuIcon className="w-8 h-8 text-white text-3xl" />
+					</SheetTrigger>
+					<SheetContent className="p-0 w-64 max-w-xs md:hidden">
+						<nav className="flex flex-col h-full bg-white dark:bg-gray-900">
+							<div className="p-6 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
+								<span className="text-xl font-bold">Menu</span>
+							</div>
+							<ul className="flex-1 flex flex-col gap-2 p-6">
+								<li>
+									<a
+										href="/"
+										className="block py-2 px-4 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+									>
+										Home
+									</a>
+								</li>
+								<li>
+									<a
+										href="/about"
+										className="block py-2 px-4 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+									>
+										About
+									</a>
+								</li>
+								<li>
+									<a
+										href="/products"
+										className="block py-2 px-4 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+									>
+										Products
+									</a>
+								</li>
+								<li>
+									<a
+										href="/contact"
+										className="block py-2 px-4 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+									>
+										Contact
+									</a>
+								</li>
+							</ul>
+							<div className="p-6 border-t border-gray-200 dark:border-gray-700">
+								<div className="flex justify-center gap-2 mb-4">
+									<button className="px-2 py-1 rounded text-sm bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700">
+										EN
+									</button>
+									<button className="px-2 py-1 rounded text-sm bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700">
+										FR
+									</button>
+									<button className="px-2 py-1 rounded text-sm bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700">
+										AR
+									</button>
+								</div>
+								<div className="flex justify-center gap-4 mb-2">
+									<a href="#" target="_blank" rel="noopener noreferrer">
+										<FaFacebook className="w-5 h-5 text-gray-600 dark:text-white hover:text-blue-600 transition" />
+									</a>
+									<a href="#" target="_blank" rel="noopener noreferrer">
+										<FaInstagram className="w-5 h-5 text-gray-600 dark:text-white hover:text-pink-500 transition" />
+									</a>
+									<a href="#" target="_blank" rel="noopener noreferrer">
+										<FaLinkedin className="w-5 h-5 text-gray-600 dark:text-white hover:text-blue-800 transition" />
+									</a>
+								</div>
+							</div>
+						</nav>
+					</SheetContent>
+				</Sheet>
 			</div>
 		</header>
 	);
