@@ -14,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <body className={`${balooBhaina2.variable} ${tajawal.variable}`}>
         <Header />
         <main>{children}</main>

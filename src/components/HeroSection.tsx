@@ -33,7 +33,7 @@ const HeroSection = () => {
 	];
 
 	return (
-		<>
+		<section className="relative">
 			<Swiper
 				spaceBetween={0}
 				loop={true}
@@ -72,7 +72,7 @@ const HeroSection = () => {
 				))}
 			</Swiper>
 
-			<div className="bg-[#232B55] hover:bg-[#354388] transition duration-300 w-20 h-20 rounded-full border-white border border-8 mx-auto -mt-9 z-10 relative">
+			<button className="bg-primary hover:bg-primary/90 transition duration-300 w-20 h-20 rounded-full border-white border-8 mx-auto z-10 absolute -bottom-10 left-1/2 -translate-x-1/2">
 				<a href="#about">
 					<Lottie
 						animationData={animationData}
@@ -81,8 +81,8 @@ const HeroSection = () => {
 						autoplay
 					/>
 				</a>
-			</div>
-		</>
+			</button>
+		</section>
 	);
 };
 

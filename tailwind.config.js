@@ -9,7 +9,6 @@ module.exports = {
   		colors: {
   			'blue-500': 'var(--blue-500)',
   			'neutral-300': 'var(--neutral-300)',
-  			'primarycolor-1': 'var(--primarycolor-1)',
   			border: 'hsl(var(--border))',
   			input: 'hsl(var(--input))',
   			ring: 'hsl(var(--ring))',
