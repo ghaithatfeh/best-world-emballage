@@ -3,35 +3,30 @@ import Paragraph from "./Paragraph";
 import { Button } from "./ui/button";
 
 const features = [
-	(
-		<>
-			<span className="text-primarycolor-1">Innovation And </span>
-			<span className="text-secondrycolor">Development</span>
-		</>
-	),
-	(
-		<>
-			<span className="text-primarycolor-1">Quality And </span>
-			<span className="text-secondrycolor">Precision</span>
-		</>
-	),
-	(
-		<>
-			<span className="text-primarycolor-1">The Unique </span>
-			<span className="text-secondrycolor">Experience</span>
-		</>
-	),
-	(
-		<>
-			<span className="text-primarycolor-1">Difference And </span>
-			<span className="text-secondrycolor">Excellence</span>
-		</>
-	),
+	<>
+		<span className="text-primary">Innovation And </span>
+		<span className="text-secondary">Development</span>
+	</>,
+	<>
+		<span className="text-primary">Quality And </span>
+		<span className="text-secondary">Precision</span>
+	</>,
+	<>
+		<span className="text-primary">The Unique </span>
+		<span className="text-secondary">Experience</span>
+	</>,
+	<>
+		<span className="text-primary">Difference And </span>
+		<span className="text-secondary">Excellence</span>
+	</>,
 ];
 
 const AboutSection = () => {
 	return (
-		<section className="py-10 bg-[url('/about-section-2.png')] bg-cover md:bg-center relative py-20" id="about">
+		<section
+			className="bg-[url('/about-section-2.png')] md:bg-contain bg-no-repeat relative py-20"
+			id="about"
+		>
 			<div className="container mx-auto">
 				<div className="flex flex-col md:flex-row items-center justify-between gap-8">
 					{/* Left Column */}
@@ -58,8 +53,22 @@ const AboutSection = () => {
 					{/* Right Column */}
 					<div className="flex-1 flex flex-col gap-10">
 						{features.map((feature, idx) => (
-							<div key={idx} className="text-xl font-semibold">{feature}</div>
+							<div key={idx} className="text-xl font-semibold">
+								{feature}
+							</div>
 						))}
+					</div>
+				</div>
+				<div className="mt-28 relative">
+					<p className="text-5xl leading-relaxed tracking-wide text-[#333] mt-5">
+						More than{" "}
+						<span className="text-secondary">ten years of experience</span> in
+						this area, and we achieve our success through close cooperation with
+						credible and powerful manufacturing companies that allow us to
+						pursue the industrialization process directly.
+					</p>
+					<div className="absolute -right-0 top-0 w-1/3">
+						<img src="/+10.png" className="w-full" />
 					</div>
 				</div>
 			</div>

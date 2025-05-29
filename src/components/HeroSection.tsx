@@ -58,7 +58,7 @@ const HeroSection = () => {
 						style={{ backgroundImage: `url(${slide.image})` }}
 					>
 						<div className="container mx-auto text-white h-full">
-							<div className="flex flex-col justify-center h-full md:px-2 pt-20 md:pt-0">
+							<div className="flex flex-col justify-center h-full pt-20 md:pt-0">
 								<h1 className="text-5xl md:text-6xl font-bold tracking-wide text-center md:text-left leading-[1.1]">
 									{slide.title}
 								</h1>
