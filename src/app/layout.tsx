@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "../styles/globals.css";
 import Header from "@/components/Header";
-
-const inter = Inter({ subsets: ["latin"] });
+import { balooBhaina2, tajawal } from "@/lib/fonts";
+import "../styles/globals.css";
 
 export const metadata: Metadata = {
   title: "Best World Emballage",
@@ -17,10 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina+2:600,500,400,700" rel="stylesheet" />
-      </head>
-      <body className={inter.className}>
+      <body className={`${balooBhaina2.variable} ${tajawal.variable}`}>
         <Header />
         <main>{children}</main>
       </body>

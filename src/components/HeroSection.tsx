@@ -1,10 +1,11 @@
 "use client";
+
 import { Swiper, SwiperSlide } from "swiper/react";
-// Import Swiper styles
+import { Autoplay, EffectFade, Pagination } from "swiper/modules";
+import Lottie from "lottie-react";
+import animationData from "@/assets/scroll-down-animation.json";
 import "swiper/css";
 import "swiper/css/pagination";
-// import required modules
-import { Autoplay, EffectFade, Pagination } from "swiper/modules";
 
 const HeroSection = () => {
 	const slides = [
@@ -57,12 +58,12 @@ const HeroSection = () => {
 						style={{ backgroundImage: `url(${slide.image})` }}
 					>
 						<div className="container mx-auto text-white h-full">
-							<div className="flex flex-col justify-center h-full px-2">
-								<h1 className="text-6xl font-bold tracking-wide text-center md:text-left leading-[1.1]">
+							<div className="flex flex-col justify-center h-full md:px-2 pt-20 md:pt-0">
+								<h1 className="text-5xl md:text-6xl font-bold tracking-wide text-center md:text-left leading-[1.1]">
 									{slide.title}
 								</h1>
 								<p
-									className="text-xl font-light leading-10 tracking-wide mt-6 text-white"
+									className="text-xl font-light leading-10 tracking-wide mt-6 text-white text-center md:text-left"
 									dangerouslySetInnerHTML={{ __html: slide.description }}
 								/>
 							</div>
@@ -71,9 +72,16 @@ const HeroSection = () => {
 				))}
 			</Swiper>
 
-            <div className="flex justify-center -mt-9 relative z-10">
-                <img src="/scroll-icon.svg" alt="" className="w-20 h-20" />
-            </div>
+			<div className="bg-[#232B55] hover:bg-[#354388] transition duration-300 w-20 h-20 rounded-full border-white border border-8 mx-auto -mt-9 z-10 relative">
+				<a href="#about">
+					<Lottie
+						animationData={animationData}
+						rendererSettings={{ preserveAspectRatio: "xMidYMid slice" }}
+						loop
+						autoplay
+					/>
+				</a>
+			</div>
 		</>
 	);
 };

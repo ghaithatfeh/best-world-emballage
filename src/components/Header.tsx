@@ -100,12 +100,12 @@ const Header = () => {
 					<DropdownMenu>
 						<DropdownMenuTrigger className="text-white flex items-center gap-2 outline-none hover:text-red-500 transition">
 							<GrLanguage className="w-5 h-5" />
-							EN
+							<span className="mt-1">EN</span>
 						</DropdownMenuTrigger>
 						<DropdownMenuContent className="bg-white p-3 flex flex-col gap-2">
-							<DropdownMenuItem>English</DropdownMenuItem>
-							<DropdownMenuItem>French</DropdownMenuItem>
-							<DropdownMenuItem>Arabic</DropdownMenuItem>
+							<DropdownMenuItem className="cursor-pointer">English</DropdownMenuItem>
+							<DropdownMenuItem className="cursor-pointer">French</DropdownMenuItem>
+							<DropdownMenuItem className="cursor-pointer" lang="ar">عربي</DropdownMenuItem>
 						</DropdownMenuContent>
 					</DropdownMenu>
 				</div>

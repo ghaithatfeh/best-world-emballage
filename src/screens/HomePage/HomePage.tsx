@@ -13,7 +13,7 @@ export const HomePage = (): JSX.Element => {
     >
       <div className="bg-[#fffcf5] w-full max-w-[1440px] relative">
         {/* Hero Section */}
-        <HeroSectionByAnima />
+        {/* <HeroSectionByAnima /> */}
 
         {/* About Us Section */}
         <div className="relative w-full">
