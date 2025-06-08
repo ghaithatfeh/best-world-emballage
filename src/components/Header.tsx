@@ -108,7 +108,7 @@ const Header = () => {
 												item.active && "bg-gray-100 text-secondary"
 											)}
 										>
-											{item.active ? (
+											{item.active && (
 												<svg
 													width="24"
 													height="24"
@@ -122,8 +122,6 @@ const Header = () => {
 														fill="#C9162F"
 													/>
 												</svg>
-											) : (
-												<span className="w-[24px] h-[24px]" />
 											)}
 											{item.name}
 										</Link>
