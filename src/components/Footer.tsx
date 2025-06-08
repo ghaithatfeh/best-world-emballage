@@ -6,7 +6,7 @@ import { FaFacebook, FaInstagram, FaLinkedin, FaPaperPlane } from "react-icons/f
 const Footer = () => {
 	return (
 		<footer className="bg-primary text-white pt-12 pb-4 relative overflow-hidden">
-			<div className="container flex flex-col md:flex-row md:justify-between gap-12">
+			<div className="container flex flex-col md:flex-row md:justify-between gap-12 relative z-10">
 				{/* Left: Logo and Description */}
 				<div className="md:w-2/5 flex flex-col items-start">
 					<div className="footer-logo flex flex-col items-start mb-4">
