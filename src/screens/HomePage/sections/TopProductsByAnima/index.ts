@@ -1,1 +1,0 @@
-export { TopProductsByAnima } from "./TopProductsByAnima";

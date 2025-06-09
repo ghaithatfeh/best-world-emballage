@@ -1,1 +1,0 @@
-export { BottomSectionByAnima } from "./BottomSectionByAnima";
