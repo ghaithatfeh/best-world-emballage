@@ -37,10 +37,10 @@ const HeroSection = () => {
 			<Swiper
 				spaceBetween={0}
 				loop={true}
-				// autoplay={{
-				// 	delay: 3500,
-				// 	disableOnInteraction: false,
-				// }}
+				autoplay={{
+					delay: 2800,
+					disableOnInteraction: false,
+				}}
 				// effect={'fade'}
 				// fadeEffect={{
 				//     crossFade: false,
@@ -72,7 +72,7 @@ const HeroSection = () => {
 				))}
 			</Swiper>
 
-			<button className="bg-primary hover:bg-primary/90 transition duration-300 w-20 h-20 rounded-full border-white border-8 mx-auto z-10 absolute -bottom-10 left-1/2 -translate-x-1/2">
+			<button className="bg-primary hover:bg-primary/90 transition duration-300 w-20 h-20 rounded-full border-[#fffcf5] border-8 mx-auto z-10 absolute -bottom-10 left-1/2 -translate-x-1/2">
 				<a href="#about">
 					<Lottie
 						animationData={animationData}
