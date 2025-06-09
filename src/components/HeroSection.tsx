@@ -6,28 +6,31 @@ import Lottie from "lottie-react";
 import animationData from "@/assets/scroll-down-animation.json";
 import "swiper/css";
 import "swiper/css/pagination";
+import { useTranslations } from "next-intl";
 
 const HeroSection = () => {
+	const t = useTranslations();
+
 	const slides = [
 		{
 			id: 1,
 			title: "Best World Emballage",
 			description:
-				"Little things for comfort and ease in your life. <br/>Our company specializes in importing and distributing plastic table tools at the Moroccan market.",
+				`${t("Little things for comfort and ease in your life")}.<br/>${t("Our company specializes in importing and distributing plastic table tools at the Moroccan market")}.`,
 			image: "/hero-1.png",
 		},
 		{
 			id: 2,
-			title: "Your Healthy Choice",
+			title: t("Your Healthy Choice"),
 			description:
-				"Little things for comfort and ease in your life. <br/>Our company specializes in importing and distributing plastic table tools at the Moroccan market.",
+				`${t("Little things for comfort and ease in your life")}.<br/>${t("Our company specializes in importing and distributing plastic table tools at the Moroccan market")}.`,
 			image: "/hero-2.png",
 		},
 		{
 			id: 3,
-			title: "Personal or Commercial Use",
+			title: t("Personal or Commercial Use"),
 			description:
-				"Little things for comfort and ease in your life. <br/>Our company specializes in importing and distributing plastic table tools at the Moroccan market.",
+				`${t("Little things for comfort and ease in your life")}.<br/>${t("Our company specializes in importing and distributing plastic table tools at the Moroccan market")}.`,
 			image: "/hero-3.png",
 		},
 	];

@@ -115,7 +115,7 @@ export const ContactSection = () => {
 				width="100%"
 				mode="place"
 				q="Best+World+Emballage،+20100,+Casablanca,+Morocco"
-				zoom={15}
+				zoom="15"
 			/>
 		</section>
 	);

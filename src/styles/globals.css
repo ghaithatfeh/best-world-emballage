@@ -49,7 +49,7 @@
   }
 }
 
-:lang(en) {
+:lang(en), :lang(fr) {
   font-family: var(--font-baloo-bhaina-2), sans-serif;
 }
 :lang(ar) {

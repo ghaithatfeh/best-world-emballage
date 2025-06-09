@@ -1,12 +1,6 @@
 import { ChevronDownIcon } from "lucide-react";
 import React from "react";
 import { Button } from "../../../../components/ui/button";
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-} from "../../../../components/ui/navigation-menu";
 
 export const HeroSectionByAnima = (): JSX.Element => {
   // Navigation menu items
@@ -58,25 +52,6 @@ export const HeroSectionByAnima = (): JSX.Element => {
               </div>
             </div>
 
-            {/* Navigation Menu */}
-            <NavigationMenu className="max-w-none">
-              <NavigationMenuList className="flex items-center gap-[34px]">
-                {navItems.map((item, index) => (
-                  <NavigationMenuItem key={index}>
-                    <NavigationMenuLink className="inline-flex items-center justify-center gap-2.5 px-1.5 py-0 relative flex-[0_0_auto]">
-                      {item.icon && (
-                        <div className="relative w-6 h-6">
-                          <div className="relative h-[22px] top-px bg-[url(/group-8.png)] bg-[100%_100%]" />
-                        </div>
-                      )}
-                      <div className="relative w-fit [font-family:'Baloo_Bhaina_2',Helvetica] font-normal text-white text-lg tracking-[0] leading-[27px] whitespace-nowrap">
-                        {item.name}
-                      </div>
-                    </NavigationMenuLink>
-                  </NavigationMenuItem>
-                ))}
-              </NavigationMenuList>
-            </NavigationMenu>
 
             {/* Language Selector */}
             <div className="inline-flex items-center justify-center gap-1 px-1.5 py-0 relative flex-[0_0_auto] rounded-[91px]">

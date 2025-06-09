@@ -10,9 +10,10 @@ import { GrLanguage } from "react-icons/gr";
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import { MenuIcon, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useLocale } from "next-intl";
 
 const Header = () => {
-	// Navigation menu items
+	const locale = useLocale();
 	const navItems = [
 		{ name: "Home", href: "/", active: true },
 		{ name: "About Us", href: "/about-us", active: false },
@@ -72,17 +73,23 @@ const Header = () => {
 					<DropdownMenu>
 						<DropdownMenuTrigger className="text-white flex items-center gap-2 outline-none hover:text-secondary transition-colors">
 							<GrLanguage className="w-5 h-5" />
-							<span className="mt-1">EN</span>
+							<span className="mt-1">{locale.toUpperCase()}</span>
 						</DropdownMenuTrigger>
 						<DropdownMenuContent className="bg-white p-3 flex flex-col gap-2">
 							<DropdownMenuItem className="cursor-pointer">
-								English
+								<Link href="/en" locale="en" passHref>
+									English
+								</Link>
 							</DropdownMenuItem>
 							<DropdownMenuItem className="cursor-pointer">
-								French
+								<Link href="/fr" locale="fr" passHref>
+									French
+								</Link>
 							</DropdownMenuItem>
 							<DropdownMenuItem className="cursor-pointer" lang="ar">
-								عربي
+								<Link href="/ar" locale="ar" passHref>
+									عربي
+								</Link>
 							</DropdownMenuItem>
 						</DropdownMenuContent>
 					</DropdownMenu>
@@ -130,15 +137,33 @@ const Header = () => {
 							</ul>
 							<div className="p-6 border-t border-gray-200 dark:border-gray-700">
 								<div className="flex justify-center gap-2 mb-4">
-									<button className="px-2 py-1 rounded text-sm bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700">
-										EN
-									</button>
-									<button className="px-2 py-1 rounded text-sm bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700">
-										FR
-									</button>
-									<button className="px-2 py-1 rounded text-sm bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700">
-										AR
-									</button>
+									<Link href="/en" locale="en" passHref>
+										<button
+											className="px-2 py-1 rounded text-sm bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700"
+											type="button"
+											aria-label="Switch language to English"
+										>
+											EN
+										</button>
+									</Link>
+									<Link href="/fr" locale="fr" passHref>
+										<button
+											className="px-2 py-1 rounded text-sm bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700"
+											type="button"
+											aria-label="Switch language to French"
+										>
+											FR
+										</button>
+									</Link>
+									<Link href="/ar" locale="ar" passHref>
+										<button
+											className="px-2 py-1 rounded text-sm bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700"
+											type="button"
+											aria-label="Switch language to Arabic"
+										>
+											AR
+										</button>
+									</Link>
 								</div>
 								<div className="flex justify-center gap-4 mb-2">
 									<a href="#" target="_blank" rel="noopener noreferrer">
