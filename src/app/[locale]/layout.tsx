@@ -32,7 +32,7 @@ export default async function RootLayout({
 	setRequestLocale(locale);
 
 	return (
-		<html lang={locale} className="scroll-smooth">
+		<html lang={locale}  dir={locale === "ar" ? "rtl" : "ltr"} className="scroll-smooth">
 			<body className={`${balooBhaina2.variable} ${tajawal.variable}`}>
 				<NextIntlClientProvider>
 					<Header />

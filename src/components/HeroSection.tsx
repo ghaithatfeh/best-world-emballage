@@ -62,11 +62,11 @@ const HeroSection = () => {
 					>
 						<div className="container mx-auto text-white h-full">
 							<div className="flex flex-col justify-center h-full pt-20 md:pt-0">
-								<h1 className="text-5xl md:text-6xl font-bold tracking-wide text-center md:text-left leading-[1.1]">
+								<h1 lang={slide.id === 1 ? "en" : ""} className="text-5xl md:text-6xl font-bold tracking-wide text-center md:text-left rtl:text-right leading-[1.1]">
 									{slide.title}
 								</h1>
 								<p
-									className="text-xl font-light leading-10 tracking-wide mt-6 text-white text-center md:text-left"
+									className="text-xl font-light leading-10 tracking-wide mt-6 text-white text-center md:text-left rtl:text-right"
 									dangerouslySetInnerHTML={{ __html: slide.description }}
 								/>
 							</div>

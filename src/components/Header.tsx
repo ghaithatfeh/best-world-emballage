@@ -10,15 +10,17 @@ import { GrLanguage } from "react-icons/gr";
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import { MenuIcon, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 const Header = () => {
 	const locale = useLocale();
+	const t = useTranslations();
+
 	const navItems = [
-		{ name: "Home", href: "/", active: true },
-		{ name: "About Us", href: "/about-us", active: false },
-		{ name: "Products", href: "/products", active: false },
-		{ name: "Contact Us", href: "/contact-us", active: false },
+		{ name: t("Home"), href: "/", active: true },
+		{ name: t("About Us"), href: "/about-us", active: false },
+		{ name: t("Products"), href: "/products", active: false },
+		{ name: t("Contact Us"), href: "/contact-us", active: false },
 	];
 
 	return (
@@ -100,10 +102,10 @@ const Header = () => {
 					<SheetTrigger className="md:hidden outline-none">
 						<MenuIcon className="w-8 h-8 text-white text-3xl" />
 					</SheetTrigger>
-					<SheetContent className="p-0 w-64 max-w-xs md:hidden">
+					<SheetContent side={locale === "ar" ? "left" : "right"} className="p-0 w-64 max-w-xs md:hidden">
 						<nav className="flex flex-col h-full bg-white dark:bg-gray-900">
 							<div className="p-6 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
-								<span className="text-xl font-bold">Menu</span>
+								<span className="text-xl font-bold">{t("Menu")}</span>
 							</div>
 							<ul className="flex-1 flex flex-col gap-2 p-6">
 								{navItems.map((item) => (

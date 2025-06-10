@@ -1,3 +1,5 @@
+"use client";
+
 import { MapPinIcon, MailIcon, PhoneIcon, SendIcon } from "lucide-react";
 import React from "react";
 import { Button } from "./ui/button";
@@ -6,27 +8,33 @@ import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { FaPaperPlane } from "react-icons/fa";
 import { GoogleMapsEmbed } from "@next/third-parties/google";
+import { useLocale, useTranslations } from "next-intl";
 
 export const ContactSection = () => {
+	const t = useTranslations();
+	const locale = useLocale();
+
 	// Contact info data
 	const contactInfo = [
 		{
 			id: 1,
 			icon: <PhoneIcon className="w-5 h-5 text-white" />,
-			label: "Phone",
-			value: "+212520397044",
+			label: t("Phone"),
+			value: "+212 520 397 044",
+			dir: "ltr",
 		},
 		{
 			id: 2,
 			icon: <MailIcon className="w-5 h-5 text-white" />,
-			label: "E-Mail",
+			label: t("E-Mail"),
 			value: "info@bestworldemballage.com",
+			dir: "ltr",
 		},
 		{
 			id: 3,
 			icon: <MapPinIcon className="w-5 h-5 text-white" />,
-			label: "Location",
-			value: "Morocco, Al-Dar Al-Baidaa, Darb Omar, Khrebka ST",
+			label: t("Location"),
+			value: t("Morocco, Al-Dar Al-Baidaa, Darb Omar, Khrebka ST"),
 		},
 	];
 
@@ -37,12 +45,10 @@ export const ContactSection = () => {
 				<div className="flex flex-col gap-8">
 					<div className="flex flex-col gap-4">
 						<p className="font-['Baloo_Bhaina_2',Helvetica] font-normal text-[#333333] text-base leading-6 max-w-[424px]">
-							For inquiries, orders, and anything on your mind regarding our
-							products, please feel free to contact us.
+							{t("For inquiries, orders, and anything on your mind regarding our products, please feel free to contact us")}.
 						</p>
 						<p className="font-['Baloo_Bhaina_2',Helvetica] font-medium text-[#333333] text-2xl leading-[30px] max-w-[424px]">
-							Our team will be ready and very happy to make your life easier,
-							healthier, and your work more distinctive and innovative.
+							{t("Our team will be ready and very happy to make your life easier, healthier, and your work more distinctive and innovative")}.
 						</p>
 					</div>
 					<div className="flex flex-col gap-6">
@@ -58,7 +64,7 @@ export const ContactSection = () => {
 										{item.label}
 									</p>
 									<p className="font-['Baloo_Bhaina_2',Helvetica] font-semibold text-[#333333] text-base leading-6">
-										{item.value}
+										<span dir={item.dir} lang={item.dir === "ltr" ? "en" : ""}>{item.value}</span>
 									</p>
 								</div>
 							</div>
@@ -69,26 +75,26 @@ export const ContactSection = () => {
 				{/* Contact Form */}
 				<form className="flex flex-col gap-6 flex-1">
 					<h3 className="font-['Baloo_Bhaina_2',Helvetica] font-medium text-[#333333] text-2xl leading-[30px]">
-						Contact us
+						{t("Contact Us")}
 					</h3>
 					<div className="flex flex-col gap-4">
 						<div className="flex flex-col sm:flex-row gap-4">
 							<Input
 								className="h-12 bg-white rounded-2xl focus:border-[#ffc85b] focus-visible:ring-0"
-								placeholder="First Name"
+								placeholder={t("First Name")}
 							/>
 							<Input
 								className="h-12 bg-white rounded-2xl focus:border-[#ffc85b] focus-visible:ring-0"
-								placeholder="Last Name"
+								placeholder={t("Last Name")}
 							/>
 						</div>
 						<Input
 							className="h-12 bg-white rounded-2xl focus:border-[#ffc85b] focus-visible:ring-0"
-							placeholder="Email"
+							placeholder={t("Email")}
 						/>
 						<Textarea
 							className="h-[165px] bg-white rounded-2xl focus:border-[#ffc85b] focus-visible:ring-0 py-3"
-							placeholder="Your message"
+							placeholder={t("Your message")}
 						/>
 					</div>
 					<div className="flex items-center">
@@ -96,7 +102,7 @@ export const ContactSection = () => {
 							type="submit"
 							className="bg-primary rounded-full px-8 h-12 font-['Baloo_Bhaina_2',Helvetica] font-semibold"
 						>
-							Send
+							{t("Send")}
 						</Button>
 						<Button
 							size="icon"
@@ -116,6 +122,7 @@ export const ContactSection = () => {
 				mode="place"
 				q="Best+World+Emballage،+20100,+Casablanca,+Morocco"
 				zoom="15"
+				language={locale}
 			/>
 		</section>
 	);
