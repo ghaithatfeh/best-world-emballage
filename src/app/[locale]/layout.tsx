@@ -36,7 +36,7 @@ export default async function RootLayout({
 			<body className={`${balooBhaina2.variable} ${tajawal.variable}`}>
 				<NextIntlClientProvider>
 					<Header />
-					<main>{children}</main>
+					{children}
 					<Footer />
 				</NextIntlClientProvider>
 			</body>

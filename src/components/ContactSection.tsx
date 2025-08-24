@@ -2,10 +2,10 @@
 
 import { MapPinIcon, MailIcon, PhoneIcon, SendIcon } from "lucide-react";
 import React from "react";
-import { Button } from "./ui/button";
-import { Card } from "./ui/card";
-import { Input } from "./ui/input";
-import { Textarea } from "./ui/textarea";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { FaPaperPlane } from "react-icons/fa";
 import { GoogleMapsEmbed } from "@next/third-parties/google";
 import { useLocale, useTranslations } from "next-intl";
@@ -100,7 +100,7 @@ export const ContactSection = () => {
 					<div className="flex items-center">
 						<Button
 							type="submit"
-							className="bg-primary rounded-full px-8 h-12 font-['Baloo_Bhaina_2',Helvetica] font-semibold"
+							className="bg-primary rounded-full px-8 h-12"
 						>
 							{t("Send")}
 						</Button>

@@ -4,7 +4,7 @@ interface Props {
 
 const Heading = ({ children }: Props) => {
 	return (
-		<h1 className="text-4xl font-bold tracking-wide leading-[1.1] text-[#333]">{children}</h1>
+		<h1 className="text-2xl md:text-4xl font-bold mb-4 text-gray-900">{children}</h1>
 	);
 };
 

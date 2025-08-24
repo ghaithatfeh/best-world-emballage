@@ -1,26 +1,39 @@
+'use client'
+
 import {
 	DropdownMenu,
 	DropdownMenuTrigger,
 	DropdownMenuContent,
 	DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
-import Link from "next/link";
+import { Link, getPathname } from "@/i18n/navigation";
 import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
 import { GrLanguage } from "react-icons/gr";
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import { MenuIcon, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useLocale, useTranslations } from "next-intl";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
 	const locale = useLocale();
 	const t = useTranslations();
+	const pathname = usePathname();
+
+	// Normalize pathname by removing the locale prefix (e.g., "/fr")
+	const normalizedPath = (() => {
+		if (!pathname) return "/";
+		const withoutLocale = pathname.startsWith(`/${locale}`)
+			? pathname.slice(locale.length + 1)
+			: pathname;
+		return withoutLocale === "" ? "/" : withoutLocale;
+	})();
 
 	const navItems = [
-		{ name: t("Home"), href: "/", active: true },
-		{ name: t("About Us"), href: "/about-us", active: false },
-		{ name: t("Products"), href: "/products", active: false },
-		{ name: t("Contact Us"), href: "/contact-us", active: false },
+		{ name: t("Home"), href: "/", active: normalizedPath === "/" },
+		{ name: t("About Us"), href: "/about", active: normalizedPath.startsWith("/about") },
+		{ name: t("Products"), href: "/products", active: normalizedPath.startsWith("/products") },
+		{ name: t("Contact Us"), href: "/contact-us", active: normalizedPath.startsWith("/contact-us") },
 	];
 
 	return (
@@ -78,18 +91,18 @@ const Header = () => {
 							<span className="mt-1">{locale.toUpperCase()}</span>
 						</DropdownMenuTrigger>
 						<DropdownMenuContent className="bg-white p-3 flex flex-col gap-2">
-							<DropdownMenuItem className="cursor-pointer">
-								<Link href="/en" locale="en" passHref>
+							<DropdownMenuItem className="cursor-pointer p-0">
+								<Link href={normalizedPath} locale="en" className="h-full w-full px-2 py-1.5">
 									English
 								</Link>
 							</DropdownMenuItem>
-							<DropdownMenuItem className="cursor-pointer">
-								<Link href="/fr" locale="fr" passHref>
+							<DropdownMenuItem className="cursor-pointer p-0">
+								<Link href={normalizedPath} locale="fr" className="h-full w-full px-2 py-1.5">
 									French
 								</Link>
 							</DropdownMenuItem>
-							<DropdownMenuItem className="cursor-pointer" lang="ar">
-								<Link href="/ar" locale="ar" passHref>
+							<DropdownMenuItem className="cursor-pointer p-0" lang="ar">
+								<Link href={normalizedPath} locale="ar" className="h-full w-full px-2 py-1.5">
 									عربي
 								</Link>
 							</DropdownMenuItem>
@@ -139,7 +152,7 @@ const Header = () => {
 							</ul>
 							<div className="p-6 border-t border-gray-200 dark:border-gray-700">
 								<div className="flex justify-center gap-2 mb-4">
-									<Link href="/en" locale="en" passHref>
+									<Link href={normalizedPath} locale="en">
 										<button
 											className="px-2 py-1 rounded text-sm bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700"
 											type="button"
@@ -148,7 +161,7 @@ const Header = () => {
 											EN
 										</button>
 									</Link>
-									<Link href="/fr" locale="fr" passHref>
+									<Link href={normalizedPath} locale="fr">
 										<button
 											className="px-2 py-1 rounded text-sm bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700"
 											type="button"
@@ -157,7 +170,7 @@ const Header = () => {
 											FR
 										</button>
 									</Link>
-									<Link href="/ar" locale="ar" passHref>
+									<Link href={normalizedPath} locale="ar">
 										<button
 											className="px-2 py-1 rounded text-sm bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700"
 											type="button"

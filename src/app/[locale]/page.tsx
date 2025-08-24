@@ -1,15 +1,17 @@
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
-import { TopProducts } from "@/components/TopProducts";
+// import { TopProducts } from "@/components/TopProducts";
 import { ContactSection } from "@/components/ContactSection";
 
-export default function Home() {
+const HomePage = () => {
 	return (
-		<>
+		<main>
 			<HeroSection />
 			<AboutSection />
 			{/* <TopProducts /> */}
 			<ContactSection />
-		</>
+		</main>
 	);
 }
+
+export default HomePage;
