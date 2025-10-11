@@ -14,7 +14,7 @@ const HeroSection = () => {
 	const slides = [
 		{
 			id: 1,
-			title: "Best World Emballage",
+			title: t("Best World Emballage"),
 			description:
 				`${t("Little things for comfort and ease in your life")}.<br/>${t("Our company specializes in importing and distributing plastic table tools at the Moroccan market")}.`,
 			image: "/hero-1.webp",
@@ -62,7 +62,7 @@ const HeroSection = () => {
 					>
 						<div className="container mx-auto text-white h-full">
 							<div className="flex flex-col justify-center h-full pt-20 md:pt-0">
-								<h1 lang={slide.id === 1 ? "en" : ""} className="text-5xl md:text-6xl font-bold tracking-wide text-center md:text-left rtl:text-right leading-[1.1]">
+								<h1 className="text-5xl md:text-6xl font-bold tracking-wide text-center md:text-left rtl:text-right leading-[1.1]">
 									{slide.title}
 								</h1>
 								<p

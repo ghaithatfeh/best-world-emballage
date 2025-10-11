@@ -1,5 +1,6 @@
 "use client";
 
+import { Link } from "@/i18n/routing";
 import Heading from "./Heading";
 import Paragraph from "./Paragraph";
 import { Button } from "./ui/button";
@@ -30,9 +31,11 @@ const AboutSection = () => {
 							)}
 							.
 						</Paragraph>
-						<Button variant="primary" size="primary" className="mt-6">
-							{t("Know More")}
-						</Button>
+						<Link href="/about">
+							<Button variant="primary" size="primary" className="mt-6">
+								{t("Know More")}
+							</Button>
+						</Link>
 					</div>
 
 					{/* Center Image */}
