@@ -32,9 +32,13 @@ const Header = () => {
 	const navItems = [
 		{ name: t("Home"), href: "/", active: normalizedPath === "/" },
 		{ name: t("About Us"), href: "/about", active: normalizedPath.startsWith("/about") },
-		{ name: t("Products"), href: "/products", active: normalizedPath.startsWith("/products") },
-		{ name: t("Contact Us"), href: "/contact-us", active: normalizedPath.startsWith("/contact-us") },
+		{ name: t("Products"), href: "#", active: normalizedPath.startsWith("/products") },
+		{ name: t("Contact Us"), href: "#", active: normalizedPath.startsWith("/contact-us") },
 	];
+
+	const socialLinks = {
+		facebook: "https://www.facebook.com/profile.php?id=100076417875791",
+	};
 
 	return (
 		<header className="bg-transparent absolute top-0 left-0 w-full z-50">
@@ -75,7 +79,7 @@ const Header = () => {
 					</ul>
 				</nav>
 				<div className="hidden md:flex items-center gap-4">
-					<a href="#" target="_blank" rel="noopener noreferrer">
+					<a href={socialLinks.facebook} target="_blank" rel="noopener noreferrer">
 						<FaFacebook className="w-5 h-5 text-white hover:text-blue-400 transition" />
 					</a>
 					<a href="#" target="_blank" rel="noopener noreferrer">
@@ -181,7 +185,7 @@ const Header = () => {
 									</Link>
 								</div>
 								<div className="flex justify-center gap-4 mb-2">
-									<a href="#" target="_blank" rel="noopener noreferrer">
+									<a href={socialLinks.facebook} target="_blank" rel="noopener noreferrer">
 										<FaFacebook className="w-5 h-5 text-gray-600 dark:text-white hover:text-blue-600 transition" />
 									</a>
 									<a href="#" target="_blank" rel="noopener noreferrer">
