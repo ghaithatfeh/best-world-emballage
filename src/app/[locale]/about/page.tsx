@@ -11,7 +11,7 @@ const AboutPage = () => {
 
 	return (
 		<main>
-			<section className="flex items-center justify-center h-[600px] md:h-[365px] bg-[url('/bg-about.png')] bg-cover bg-center">
+			<section className="flex items-center justify-center h-[600px] md:h-[365px] bg-[url('/bg-about.webp')] bg-cover bg-center">
 				<h1 className="text-5xl text-white md:text-6xl font-bold tracking-wide text-center md:text-left rtl:text-right leading-[1.1] [text-shadow:_1px_1px_0_#0000007f] md:[text-shadow:none]">
 					{t("About Us")}
 				</h1>
@@ -67,7 +67,7 @@ const AboutPage = () => {
 							</div>
 						</div>
 
-						<div className="max-w-sm lg:absolute top-[33%] right-12 xl:-right-4 bg-[url('/bg-vision.png')] bg-cover bg-center hidden lg:block">
+						<div className="max-w-sm lg:absolute top-[33%] right-12 xl:-right-4 bg-[url('/bg-vision.webp')] bg-cover bg-center hidden lg:block">
 							<h4 className="tracking-[6px] text-gray-500 mb-2 leading-10">
 								{t("ABOUT US")}
 							</h4>
@@ -78,7 +78,7 @@ const AboutPage = () => {
 						</div>
 					</div>
 
-					<div className="bg-[url('/bg-vision.png')] bg-contain bg-no-repeat ltr:bg-left rtl:bg-right lg:hidden">
+					<div className="bg-[url('/bg-vision.webp')] bg-contain bg-no-repeat ltr:bg-left rtl:bg-right lg:hidden">
 						<h4 className="tracking-[6px] text-gray-500 mb-2 leading-10">
 							{t("ABOUT US")}
 						</h4>
@@ -91,7 +91,7 @@ const AboutPage = () => {
 			</section>
 			<WorkSection />
 			<section>
-				<div className="bg-[url('/bg-ending.png')] bg-cover bg-center py-20 md:py-40">
+				<div className="bg-[url('/bg-ending.webp')] bg-cover bg-center py-20 md:py-40">
 					<div className="container mx-auto">
 						<h2 className="text-2xl md:text-4xl text-white text-center font-bold tracking-wide !leading-[1.6] [text-shadow:_1px_1px_0_#0000007f]">
 							{t(

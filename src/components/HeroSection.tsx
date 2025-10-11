@@ -17,21 +17,21 @@ const HeroSection = () => {
 			title: "Best World Emballage",
 			description:
 				`${t("Little things for comfort and ease in your life")}.<br/>${t("Our company specializes in importing and distributing plastic table tools at the Moroccan market")}.`,
-			image: "/hero-1.png",
+			image: "/hero-1.webp",
 		},
 		{
 			id: 2,
 			title: t("Your Healthy Choice"),
 			description:
 				`${t("Little things for comfort and ease in your life")}.<br/>${t("Our company specializes in importing and distributing plastic table tools at the Moroccan market")}.`,
-			image: "/hero-2.png",
+			image: "/hero-2.webp",
 		},
 		{
 			id: 3,
 			title: t("Personal or Commercial Use"),
 			description:
 				`${t("Little things for comfort and ease in your life")}.<br/>${t("Our company specializes in importing and distributing plastic table tools at the Moroccan market")}.`,
-			image: "/hero-3.png",
+			image: "/hero-3.webp",
 		},
 	];
 

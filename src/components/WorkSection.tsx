@@ -36,13 +36,13 @@ const WorkSection = () => {
 		<div className="bg-[#fffcf5] pt-8 pb-16">
 			<div className="container mx-auto" id="work-section">
 				<h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-10 md:mb-0">{t("title")}</h2>
-				<WorkRow imageSrc="/manufacturing.png">
+				<WorkRow imageSrc="/manufacturing.webp">
 					{t("r1")}
 				</WorkRow>
-				<WorkRow imageSrc="/manufacturing2.png">
+				<WorkRow imageSrc="/manufacturing2.webp">
 					{t("r2")}
 				</WorkRow>
-				<WorkRow imageSrc="/manufacturing3.png">
+				<WorkRow imageSrc="/manufacturing3.webp">
 					{t("r3")}
 				</WorkRow>
 			</div>

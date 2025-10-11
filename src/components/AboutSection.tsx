@@ -38,7 +38,7 @@ const AboutSection = () => {
 					{/* Center Image */}
 					<div className="flex-1 flex justify-center relative">
 						<img
-							src="/about-section.png"
+							src="/about-section.webp"
 							alt="Colorful straws"
 							className="rounded-2xl shadow-lg object-cover"
 						/>

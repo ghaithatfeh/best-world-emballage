@@ -6,7 +6,7 @@ import { Button } from "./ui/button";
 const products = [
 	{
 		id: 1,
-		image: "/image-29.png",
+		image: "/image-29.webp",
 		avatars: [
 			{ src: "/image-26.png", alt: "User avatar" },
 			{ src: "/image-27.png", alt: "User avatar" },
@@ -18,7 +18,7 @@ const products = [
 	},
 	{
 		id: 2,
-		image: "/image-29.png",
+		image: "/image-29.webp",
 		avatars: [
 			{ src: "/image-26.png", alt: "User avatar" },
 			{ src: "/image-27.png", alt: "User avatar" },
@@ -30,7 +30,7 @@ const products = [
 	},
 	{
 		id: 3,
-		image: "/image-29.png",
+		image: "/image-29.webp",
 		avatars: [
 			{ src: "/image-26.png", alt: "User avatar" },
 			{ src: "/image-27.png", alt: "User avatar" },
@@ -41,7 +41,7 @@ const products = [
 	},
 	{
 		id: 4,
-		image: "/image-29.png",
+		image: "/image-29.webp",
 		avatars: [
 			{ src: "/image-26.png", alt: "User avatar" },
 			{ src: "/image-27.png", alt: "User avatar" },
@@ -53,7 +53,7 @@ const products = [
 	},
 	{
 		id: 5,
-		image: "/image-29.png",
+		image: "/image-29.webp",
 		avatars: [
 			{ src: "/image-26.png", alt: "User avatar" },
 			{ src: "/image-27.png", alt: "User avatar" },
@@ -65,7 +65,7 @@ const products = [
 	},
 	{
 		id: 6,
-		image: "/image-29.png",
+		image: "/image-29.webp",
 		avatars: [
 			{ src: "/image-30.png", alt: "User avatar" },
 			{ src: "/image-31.png", alt: "User avatar" },
@@ -76,7 +76,7 @@ const products = [
 	},
 	{
 		id: 7,
-		image: "/image-29.png",
+		image: "/image-29.webp",
 		avatars: [
 			{ src: "/image-26.png", alt: "User avatar" },
 			{ src: "/image-27.png", alt: "User avatar" },
@@ -88,7 +88,7 @@ const products = [
 	},
 	{
 		id: 8,
-		image: "/image-29.png",
+		image: "/image-29.webp",
 		avatars: [
 			{ src: "/image-30.png", alt: "User avatar" },
 			{ src: "/image-31.png", alt: "User avatar" },

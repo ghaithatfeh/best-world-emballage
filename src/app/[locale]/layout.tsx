@@ -10,6 +10,10 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
 	title: "Best World Emballage",
 	description: "Best World Emballage",
+	icons: {
+		icon: "/favicon.ico",
+		apple: "/apple-touch-icon.png",
+	},
 };
 
 export function generateStaticParams() {
