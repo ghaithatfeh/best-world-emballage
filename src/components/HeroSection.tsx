@@ -3,7 +3,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, Pagination } from "swiper/modules";
 import Lottie from "lottie-react";
-import animationData from "@/assets/scroll-down-animation.json";
+import Animation from "../assets/scroll-down-animation.json";
 import "swiper/css";
 import "swiper/css/pagination";
 import { useTranslations } from "next-intl";
@@ -78,7 +78,7 @@ const HeroSection = () => {
 			<button className="bg-primary hover:bg-primary/90 transition duration-300 w-20 h-20 rounded-full border-[#fffcf5] border-8 mx-auto z-10 absolute -bottom-10 left-1/2 -translate-x-1/2">
 				<a href="#about">
 					<Lottie
-						animationData={animationData}
+						animationData={Animation}
 						rendererSettings={{ preserveAspectRatio: "xMidYMid slice" }}
 						loop
 						autoplay
