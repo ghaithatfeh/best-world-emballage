@@ -15,22 +15,19 @@ const HeroSection = () => {
 		{
 			id: 1,
 			title: t("Best World Emballage"),
-			description:
-				`${t("Little things for comfort and ease in your life")}.<br/>${t("Our company specializes in importing and distributing plastic table tools at the Moroccan market")}.`,
+			description:`${t("Little things for comfort and ease in your life")}.<br/>${t("Our company specializes in importing and distributing plastic table tools at the Moroccan market")}.`,
 			image: "/hero-1.webp",
 		},
 		{
 			id: 2,
 			title: t("Your Healthy Choice"),
-			description:
-				`${t("Little things for comfort and ease in your life")}.<br/>${t("Our company specializes in importing and distributing plastic table tools at the Moroccan market")}.`,
+			description: `${t("Choose packaging that puts your health and hygiene first")}.<br/>${t("Our eco-conscious products are designed to keep your meals fresh, safe, and perfectly presented")}.`,
 			image: "/hero-2.webp",
 		},
 		{
 			id: 3,
 			title: t("Personal or Commercial Use"),
-			description:
-				`${t("Little things for comfort and ease in your life")}.<br/>${t("Our company specializes in importing and distributing plastic table tools at the Moroccan market")}.`,
+			description: `${t("Versatile solutions for homes, cafés, and businesses alike")}.<br/>${t("Our durable and stylish packaging adapts to your every need, from daily meals to professional catering")}.`,
 			image: "/hero-3.webp",
 		},
 	];
@@ -66,7 +63,7 @@ const HeroSection = () => {
 									{slide.title}
 								</h1>
 								<p
-									className="text-xl font-light leading-10 tracking-wide mt-6 text-white text-center md:text-left rtl:text-right"
+									className="text-xl leading-10 tracking-wide mt-6 text-white text-center md:text-left rtl:text-right"
 									dangerouslySetInnerHTML={{ __html: slide.description }}
 								/>
 							</div>
