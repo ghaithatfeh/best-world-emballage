@@ -2,12 +2,9 @@ import createNextIntlPlugin from "next-intl/plugin";
 
 const nextConfig = {
   output: 'export',
+  trailingSlash: true,
   images: {
     unoptimized: true
-  },
-  webpack: (config) => {
-    config.cache = false;
-    return config;
   }
 };
 

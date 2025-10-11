@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import Header from "@/components/Header";
 import { balooBhaina2, tajawal } from "@/lib/fonts";
 import "@/styles/globals.css";
-import { NextIntlClientProvider, hasLocale, useTranslations } from "next-intl";
-import { notFound } from "next/navigation";
+import { NextIntlClientProvider } from "next-intl";
 import { routing } from "@/i18n/routing";
 import { setRequestLocale } from "next-intl/server";
 import Footer from "@/components/Footer";
@@ -25,10 +24,6 @@ export default async function RootLayout({
 	params: Promise<{ locale: string }>;
 }>) {
 	const { locale } = await params;
-	if (!hasLocale(routing.locales, locale)) {
-		notFound();
-	}
-
 	setRequestLocale(locale);
 
 	return (
