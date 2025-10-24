@@ -23,7 +23,7 @@ const Header = () => {
 		{ name: t("Home"), href: "/", active: pathname === "/" },
 		{ name: t("About Us"), href: "/about", active: pathname.startsWith("/about") },
 		{ name: t("Products"), href: "#", active: pathname.startsWith("/products") },
-		{ name: t("Contact Us"), href: "#", active: pathname.startsWith("/contact-us") },
+		{ name: t("Contact Us"), href: "/contact", active: pathname.startsWith("/contact") },
 	];
 
 	const socialLinks = {

@@ -10,7 +10,7 @@ import { FaPaperPlane } from "react-icons/fa";
 import { GoogleMapsEmbed } from "@next/third-parties/google";
 import { useLocale, useTranslations } from "next-intl";
 
-export const ContactSection = () => {
+export const ContactSection = ({ withIcon = true }: { withIcon?: boolean }) => {
 	const t = useTranslations();
 	const locale = useLocale();
 
@@ -43,40 +43,49 @@ export const ContactSection = () => {
 			<Card className="max-w-[1095px] mx-auto bg-[#fffcf5] rounded-[30px] p-8 flex flex-col md:flex-row gap-8 shadow-lg -mb-3 md:-mb-10 z-10 relative">
 				{/* Contact Information */}
 				<div className="flex flex-col gap-8">
+					{!withIcon && (
+						<h3 className="font-['Baloo_Bhaina_2',Helvetica] font-medium text-[#333333] text-3xl leading-[30px]">
+							{t("Contact Us")}
+						</h3>
+					)}
 					<div className="flex flex-col gap-4">
 						<p className="font-['Baloo_Bhaina_2',Helvetica] font-normal text-[#333333] text-base leading-6 max-w-[424px]">
 							{t("For inquiries, orders, and anything on your mind regarding our products, please feel free to contact us")}.
 						</p>
-						<p className="font-['Baloo_Bhaina_2',Helvetica] font-medium text-[#333333] text-2xl leading-[30px] max-w-[424px]">
+						<p className="font-['Baloo_Bhaina_2',Helvetica] font-medium text-[#333333] text-xl leading-[30px] max-w-[424px]">
 							{t("Our team will be ready and very happy to make your life easier, healthier, and your work more distinctive and innovative")}.
 						</p>
 					</div>
-					<div className="flex flex-col gap-6">
-						{contactInfo.map((item) => (
-							<div key={item.id} className="flex items-center gap-4">
-								<div className="p-4 bg-primary rounded-full">
-									<div className="w-6 h-6 flex items-center justify-center">
-										{item.icon}
+					{withIcon && (
+						<div className="flex flex-col gap-6">
+							{contactInfo.map((item) => (
+								<div key={item.id} className="flex items-center gap-4">
+									<div className="p-4 bg-primary rounded-full">
+										<div className="w-6 h-6 flex items-center justify-center">
+											{item.icon}
+										</div>
+									</div>
+									<div className="flex flex-col gap-1">
+										<p className="font-['Baloo_Bhaina_2',Helvetica] font-normal text-[#333333] text-sm leading-5">
+											{item.label}
+										</p>
+										<p className="font-['Baloo_Bhaina_2',Helvetica] font-semibold text-[#333333] text-base leading-6">
+											<span dir={item.dir} lang={item.dir === "ltr" ? "en" : ""}>{item.value}</span>
+										</p>
 									</div>
 								</div>
-								<div className="flex flex-col gap-1">
-									<p className="font-['Baloo_Bhaina_2',Helvetica] font-normal text-[#333333] text-sm leading-5">
-										{item.label}
-									</p>
-									<p className="font-['Baloo_Bhaina_2',Helvetica] font-semibold text-[#333333] text-base leading-6">
-										<span dir={item.dir} lang={item.dir === "ltr" ? "en" : ""}>{item.value}</span>
-									</p>
-								</div>
-							</div>
-						))}
-					</div>
+							))}
+						</div>
+					)}
 				</div>
 
 				{/* Contact Form */}
 				<form className="flex flex-col gap-6 flex-1">
-					<h3 className="font-['Baloo_Bhaina_2',Helvetica] font-medium text-[#333333] text-2xl leading-[30px]">
-						{t("Contact Us")}
-					</h3>
+					{withIcon && (
+						<h3 className="font-['Baloo_Bhaina_2',Helvetica] font-medium text-[#333333] text-3xl leading-[30px]">
+							{t("Contact Us")}
+						</h3>
+					)}
 					<div className="flex flex-col gap-4">
 						<div className="flex flex-col sm:flex-row gap-4">
 							<Input
