@@ -1,65 +1,89 @@
-import { Avatar, AvatarFallback } from "@radix-ui/react-avatar";
-import { ChevronRightIcon } from "lucide-react";
-import { Card, CardContent } from "./ui/card";
+"use client";
 
-interface Props {
-	product: {
-		image: string;
-		avatars: { src: string; alt: string }[];
-		extraAvatars?: number;
-		code: string;
-		name: string;
-	};
+import { Card } from "@/components/ui/card";
+import { useTranslations } from "next-intl";
+import { ChevronRight } from "lucide-react";
+import Link from "next/link";
+
+interface ProductProps {
+	code: string;
+	title: string;
+	image: string;
+	colors?: string[];
+	additionalColors?: number;
+	onClick?: () => void;
 }
 
-const ProductCard = ({ product }: Props) => {
+const ProductCard = ({
+	code,
+	title,
+	image,
+	colors = [],
+	additionalColors = 0,
+	onClick,
+}: ProductProps) => {
+	const t = useTranslations();
+
 	return (
-		<Card className="w-full rounded-2xl overflow-hidden shadow-[0px_0px_6px_#28293d12] border-none">
-			<div className="relative">
-				<img
-					className="w-full h-[230px] object-cover"
-					alt="Product"
-					src={product.image}
-				/>
-				<div className="flex items-center gap-2.5 absolute -bottom-4 left-4">
-					{product.avatars.map((avatar, index) => (
-						<Avatar
-							key={index}
-							className="w-[38px] h-[38px] border-2 border-white"
-						>
-							<img
-								src={avatar.src}
-								alt={avatar.alt}
-								className="w-full h-full object-cover"
+		<Card 
+			className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 group cursor-pointer"
+			onClick={onClick}
+		>
+			{/* Product Image */}
+			<div className="relative aspect-square flex items-center justify-center rounded-t-3xl">
+
+                <div className="w-full h-full overflow-hidden">
+                    <img
+                        src={image}
+                        alt={title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                </div>
+				
+				{/* Color Options Overlay */}
+				{colors.length > 0 && (
+                    // bg-white/90 backdrop-blur-sm shadow-md
+					<div className="absolute -bottom-7 left-1/2 -translate-x-1/2 flex items-center gap-2 px-3 py-2 rounded-full">
+						{colors.map((color, index) => (
+							<div
+								key={index}
+								className="w-10 h-10 rounded-full border-2 border-white shadow-sm cursor-pointer hover:scale-110 transition-transform"
+								style={{ backgroundColor: color }}
+								title={color}
 							/>
-							<AvatarFallback>U</AvatarFallback>
-						</Avatar>
-					))}
-					{product.extraAvatars && (
-						<div className="flex w-11 h-11 items-center justify-center bg-white rounded-full border-[3px] border-solid">
-							<span className="[font-family:'Baloo_Bhaina_2',Helvetica] font-medium text-[#333333] text-sm text-center">
-								+{product.extraAvatars}
-							</span>
-						</div>
-					)}
-				</div>
+						))}
+						{additionalColors > 0 && (
+							<div className="w-10 h-10 rounded-full bg-white border-2 border-gray-200 flex items-center justify-center text-[#333333] font-bold text-sm cursor-pointer hover:scale-110 transition-transform shadow-sm">
+								+{additionalColors}
+							</div>
+						)}
+					</div>
+				)}
 			</div>
-			<CardContent className="flex flex-col items-start gap-3 pt-6 pb-4">
-				<span className="[font-family:'Baloo_Bhaina_2',Helvetica] font-normal text-[#c91430] text-sm tracking-[0.20px] leading-[22px]">
-					Product Code: {product.code}
-				</span>
-				<h3 className="self-stretch [font-family:'Baloo_Bhaina_2',Helvetica] font-bold text-[#333333] text-xl tracking-[0] leading-[18px]">
-					{product.name}
+
+			{/* Product Details */}
+			<div className="p-6 mt-5">
+				{/* Product Code */}
+				<p className="text-[#DC2626] text-sm font-medium mb-2">
+					{t("Product Code")}: {code}
+				</p>
+
+				{/* Product Title */}
+				<h3 className="text-[#333333] text-xl font-bold mb-3 leading-tight">
+					{title}
 				</h3>
-				<div className="flex items-center gap-1">
-					<span className="[font-family:'Baloo_Bhaina_2',Helvetica] font-medium text-[#232b55] text-sm tracking-[0] leading-4">
-						Learn More
-					</span>
-					<ChevronRightIcon className="w-4 h-4 rotate-90 text-[#232b55]" />
-				</div>
-			</CardContent>
+
+				{/* Learn More Link */}
+				<button
+					className="text-sm inline-flex items-center gap-1 text-[#232B55] font-semibold hover:gap-2 transition-all group/link"
+				>
+					{t("Learn More")}
+					<ChevronRight className="w-5 h-5 group-hover/link:translate-x-1 transition-transform" />
+				</button>
+			</div>
 		</Card>
 	);
 };
 
 export default ProductCard;
+

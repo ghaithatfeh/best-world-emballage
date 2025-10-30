@@ -13,18 +13,14 @@ import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import { MenuIcon, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useLocale, useTranslations } from "next-intl";
+import useLinks from "@/hooks/useLinks";
 
 const Header = () => {
 	const locale = useLocale();
 	const t = useTranslations();
 	const pathname = usePathname();
 
-	const navItems = [
-		{ name: t("Home"), href: "/", active: pathname === "/" },
-		{ name: t("About Us"), href: "/about", active: pathname.startsWith("/about") },
-		{ name: t("Products"), href: "#", active: pathname.startsWith("/products") },
-		{ name: t("Contact Us"), href: "/contact", active: pathname.startsWith("/contact") },
-	];
+	const { links: navItems } = useLinks();
 
 	const socialLinks = {
 		facebook: "https://www.facebook.com/profile.php?id=100076417875791",

@@ -103,7 +103,7 @@ export const ContactSection = ({ withIcon = true }: { withIcon?: boolean }) => {
 						/>
 						<Textarea
 							className="h-[165px] bg-white rounded-2xl focus:border-[#ffc85b] focus-visible:ring-0 py-3"
-							placeholder={t("Your message")}
+							placeholder={t("Your Message")}
 						/>
 					</div>
 					<div className="flex items-center">

@@ -2,8 +2,10 @@
 
 import CustomHeroSection from "@/components/CustomHeroSection";
 import Heading from "@/components/Heading";
+import PageEnd from "@/components/PageEnd";
 import { Button } from "@/components/ui/button";
 import WorkSection from "@/components/WorkSection";
+import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { FaPaperPlane } from "react-icons/fa";
 
@@ -87,33 +89,13 @@ const AboutPage = () => {
 				</div>
 			</section>
 			<WorkSection />
-			<section>
-				<div className="bg-[url('/bg-ending.webp')] bg-cover bg-center py-20 md:py-40">
-					<div className="container mx-auto">
-						<h2 className="text-2xl md:text-4xl text-white text-center font-bold tracking-wide !leading-[1.6] [text-shadow:_1px_1px_0_#0000007f]">
-							{t(
-								"Whether you're looking for products for personal or commercial use, we offer solutions that meet all needs and requirements"
-							)}
-							.
-						</h2>
-						<div className="flex justify-center mt-5">
-							<Button
-								type="submit"
-								className="bg-primary rounded-full px-8 h-12"
-							>
-								{t("Discover Products")}
-							</Button>
-							<Button
-								size="icon"
-								className="bg-primary rounded-full h-12 w-12 ml-0"
-								type="submit"
-							>
-								<FaPaperPlane className="h-3 w-3" />
-							</Button>
-						</div>
-					</div>
-				</div>
-			</section>
+			<PageEnd
+				text={t(
+					"Whether you're looking for products for personal or commercial use, we offer solutions that meet all needs and requirements"
+				) + "."}
+				btnLabel={t("Discover Products")}
+				btnLink="/products"
+			/>
 		</main>
 	);
 };
