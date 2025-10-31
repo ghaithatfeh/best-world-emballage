@@ -18,7 +18,7 @@ const useLinks = () => {
 		},
 		{
 			name: t("Products"),
-			href: "",
+			href: "/products",
 			active: pathname.startsWith("/products"),
 		},
 		{

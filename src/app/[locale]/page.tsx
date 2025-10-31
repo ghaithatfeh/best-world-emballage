@@ -1,12 +1,14 @@
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import { ContactSection } from "@/components/ContactSection";
+import ProductsSection from "@/components/ProductsSection";
 
 const HomePage = () => {
 	return (
 		<main>
 			<HeroSection />
 			<AboutSection />
+			<ProductsSection />
 			<ContactSection />
 		</main>
 	);

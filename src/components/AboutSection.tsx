@@ -5,6 +5,7 @@ import Heading from "./Heading";
 import Paragraph from "./Paragraph";
 import { Button } from "./ui/button";
 import { useTranslations } from "next-intl";
+import { FaPaperPlane } from "react-icons/fa";
 
 const AboutSection = () => {
 	const t = useTranslations();
@@ -31,11 +32,21 @@ const AboutSection = () => {
 							)}
 							.
 						</Paragraph>
-						<Link href="/about">
-							<Button variant="primary" size="primary" className="mt-6">
-								{t("Know More")}
-							</Button>
-						</Link>
+						<div className="flex justify-start items-center mt-6">
+							<Link href="/about">
+								<Button variant="primary" size="primary">
+									{t("Know More")}
+								</Button>
+							</Link>
+							<Link href="/about">
+								<Button
+									size="icon"
+									className="bg-primary rounded-full h-12 w-12 ml-0"
+								>
+									<FaPaperPlane className="h-3 w-3" />
+								</Button>
+							</Link>
+						</div>
 					</div>
 
 					{/* Center Image */}
