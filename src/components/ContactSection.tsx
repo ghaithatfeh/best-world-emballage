@@ -1,7 +1,7 @@
 "use client";
 
 import { MapPinIcon, MailIcon, PhoneIcon, SendIcon } from "lucide-react";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -9,17 +9,29 @@ import { Textarea } from "@/components/ui/textarea";
 import { FaPaperPlane } from "react-icons/fa";
 import { GoogleMapsEmbed } from "@next/third-parties/google";
 import { useLocale, useTranslations } from "next-intl";
-import { useForm, ValidationError } from '@formspree/react';
-
+import { useForm, ValidationError } from "@formspree/react";
+import { toast } from "react-hot-toast";
 
 export const ContactSection = ({ withIcon = true }: { withIcon?: boolean }) => {
 	const t = useTranslations();
 	const locale = useLocale();
-
+	const formRef = useRef<HTMLFormElement>(null);
 	const [state, handleSubmit] = useForm("mrbrbvjw");
-	// if (state.succeeded) {
-	// 	toast.success(t("Message sent successfully"));
-	// }
+
+	useEffect(() => {
+		if (!state.submitting && state.succeeded) {
+			toast.success(
+				t("Thanks for reaching out! We’ll get back to you shortly") + ".",
+				{
+					duration: 5000,
+					className: "p-4 bg-[#fffcf5]",
+				}
+			);
+			if (formRef.current) {
+				formRef.current.reset();
+			}
+		}
+	}, [state.submitting, state.succeeded]);
 
 	// Contact info data
 	const contactInfo = [
@@ -57,10 +69,16 @@ export const ContactSection = ({ withIcon = true }: { withIcon?: boolean }) => {
 					)}
 					<div className="flex flex-col gap-4">
 						<p className="font-['Baloo_Bhaina_2',Helvetica] font-normal text-[#333333] text-base leading-6 max-w-[424px]">
-							{t("For inquiries, orders, and anything on your mind regarding our products, please feel free to contact us")}.
+							{t(
+								"For inquiries, orders, and anything on your mind regarding our products, please feel free to contact us"
+							)}
+							.
 						</p>
 						<p className="font-['Baloo_Bhaina_2',Helvetica] font-medium text-[#333333] text-xl leading-[30px] max-w-[424px]">
-							{t("Our team will be ready and very happy to make your life easier, healthier, and your work more distinctive and innovative")}.
+							{t(
+								"Our team will be ready and very happy to make your life easier, healthier, and your work more distinctive and innovative"
+							)}
+							.
 						</p>
 					</div>
 					{withIcon && (
@@ -77,7 +95,12 @@ export const ContactSection = ({ withIcon = true }: { withIcon?: boolean }) => {
 											{item.label}
 										</p>
 										<p className="font-['Baloo_Bhaina_2',Helvetica] font-semibold text-[#333333] text-base leading-6">
-											<span dir={item.dir} lang={item.dir === "ltr" ? "en" : ""}>{item.value}</span>
+											<span
+												dir={item.dir}
+												lang={item.dir === "ltr" ? "en" : ""}
+											>
+												{item.value}
+											</span>
 										</p>
 									</div>
 								</div>
@@ -87,7 +110,11 @@ export const ContactSection = ({ withIcon = true }: { withIcon?: boolean }) => {
 				</div>
 
 				{/* Contact Form */}
-				<form onSubmit={handleSubmit} className="flex flex-col gap-6 flex-1">
+				<form
+					ref={formRef}
+					onSubmit={handleSubmit}
+					className="flex flex-col gap-6 flex-1"
+				>
 					{withIcon && (
 						<h3 className="font-['Baloo_Bhaina_2',Helvetica] font-medium text-[#333333] text-3xl leading-[30px]">
 							{t("Contact Us")}
@@ -101,21 +128,11 @@ export const ContactSection = ({ withIcon = true }: { withIcon?: boolean }) => {
 								type="text"
 								name="first_name"
 							/>
-							<ValidationError 
-								prefix="First Name" 
-								field="first_name"
-								errors={state.errors}
-							/>
 							<Input
 								className="h-12 bg-white rounded-2xl focus:border-[#ffc85b] focus-visible:ring-0"
 								placeholder={t("Last Name")}
 								type="text"
 								name="last_name"
-							/>
-							<ValidationError 
-								prefix="Last Name" 
-								field="last_name"
-								errors={state.errors}
 							/>
 						</div>
 						<Input
@@ -124,20 +141,22 @@ export const ContactSection = ({ withIcon = true }: { withIcon?: boolean }) => {
 							type="email"
 							name="email"
 						/>
-						<ValidationError 
-							prefix="Email" 
+						<ValidationError
+							prefix="Email"
 							field="email"
 							errors={state.errors}
+							className="text-red-500 text-sm -mt-3 ms-1"
 						/>
 						<Textarea
 							className="h-[165px] bg-white rounded-2xl focus:border-[#ffc85b] focus-visible:ring-0 py-3"
 							placeholder={t("Your Message")}
 							name="message"
 						/>
-						<ValidationError 
-							prefix="Message" 
+						<ValidationError
+							prefix="Message"
 							field="message"
 							errors={state.errors}
+							className="text-red-500 text-sm -mt-3 ms-1"
 						/>
 					</div>
 					<div className="flex items-center">

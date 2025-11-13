@@ -6,6 +6,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { routing } from "@/i18n/routing";
 import { setRequestLocale } from "next-intl/server";
 import Footer from "@/components/Footer";
+import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
 	title: "Best World Emballage",
@@ -36,6 +37,7 @@ export default async function RootLayout({
 				<NextIntlClientProvider>
 					<Header />
 					{children}
+					<Toaster position="top-right" />
 					<Footer />
 				</NextIntlClientProvider>
 			</body>
