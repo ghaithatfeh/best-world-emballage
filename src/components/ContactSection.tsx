@@ -98,6 +98,8 @@ export const ContactSection = ({ withIcon = true }: { withIcon?: boolean }) => {
 							<Input
 								className="h-12 bg-white rounded-2xl focus:border-[#ffc85b] focus-visible:ring-0"
 								placeholder={t("First Name")}
+								type="text"
+								name="first_name"
 							/>
 							<ValidationError 
 								prefix="First Name" 
@@ -107,6 +109,8 @@ export const ContactSection = ({ withIcon = true }: { withIcon?: boolean }) => {
 							<Input
 								className="h-12 bg-white rounded-2xl focus:border-[#ffc85b] focus-visible:ring-0"
 								placeholder={t("Last Name")}
+								type="text"
+								name="last_name"
 							/>
 							<ValidationError 
 								prefix="Last Name" 
@@ -117,6 +121,8 @@ export const ContactSection = ({ withIcon = true }: { withIcon?: boolean }) => {
 						<Input
 							className="h-12 bg-white rounded-2xl focus:border-[#ffc85b] focus-visible:ring-0"
 							placeholder={t("Email")}
+							type="email"
+							name="email"
 						/>
 						<ValidationError 
 							prefix="Email" 
@@ -126,6 +132,7 @@ export const ContactSection = ({ withIcon = true }: { withIcon?: boolean }) => {
 						<Textarea
 							className="h-[165px] bg-white rounded-2xl focus:border-[#ffc85b] focus-visible:ring-0 py-3"
 							placeholder={t("Your Message")}
+							name="message"
 						/>
 						<ValidationError 
 							prefix="Message" 
