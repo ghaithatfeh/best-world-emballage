@@ -34,7 +34,7 @@
     "Send": "إرسال",
     "Quick Links": "الروابط السريعة",
     "Your Email": "البريد الإلكتروني",
-    "Copyrights": "حقوق النشر محفوظة",
+    "Copyright": "حقوق النشر محفوظة",
     "We are proud to offer a wide and distinct range of high-quality, healthy and uniquely designed plastic products that also meet the needs of our clients in Morocco and all over the world": "نحن نفتخر بتقديم مجموعة واسعة ومتميزة من المنتجات البلاستيكية المصنوعة من مواد عالية الجودة وصحية وذات تصاميم فريدة وجذابة وتلبي أيضاً احتياجات عملائنا في المغرب وجميع أنحاء العالم",
     "Morocco, Al-Dar Al-Baidaa, Darb Omar, Khrebka ST": "المغرب، الدار البيضاء، درب عمر، زنقة خريبكة",
     "Discover Products": "اكتشف المنتجات",
@@ -78,5 +78,11 @@
     "Available Colors": "الألوان المتاحة",
     "Like this product? Contact us if you need any further information": "أعجبك هذا المنتج؟ اتصل بنا إذا كنت بحاجة إلى أي معلومات إضافية",
     "Top Products": "منتجاتنا الرائجة",
-    "See All Products": "عرض جميع المنتجات"
+    "See All Products": "عرض جميع المنتجات",
+    "mm": "ملم",
+    "g": "غ",
+    "Quantity Per Bag": "عدد القطع في الكيس",
+    "Quantity Per Box": "عدد القطع في الصندوق",
+    "pcs": "قطعة",
+    "Diameter": "قطر"
 }

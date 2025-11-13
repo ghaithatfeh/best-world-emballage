@@ -56,3 +56,14 @@
 :lang(ar) {
   font-family: var(--font-tajawal), sans-serif;
 }
+
+/* Swiper Pagination Bullets - Primary Color */
+.products-swiper .swiper-pagination-bullet {
+  background-color: rgba(156, 163, 175, 0.5); /* gray-400 with opacity */
+  opacity: 1;
+}
+
+.products-swiper .swiper-pagination-bullet-active-primary {
+  background-color: hsl(var(--primary-hover));
+  /* opacity: 0.9; */
+}

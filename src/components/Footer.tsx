@@ -92,7 +92,7 @@ const Footer = () => {
 				<hr className="border-white/20 mb-4" />
 				<div className="flex flex-col md:flex-row justify-between items-center gap-2">
 					<div className="text-white/60 text-sm">
-						{t("Copyrights")} {currentYear} BWE
+						{t("Copyright")} © {currentYear} Best World Emballage
 					</div>
 					<div className="text-white/60 text-sm">
 						{t("Built with ❤️ by")}{" "}

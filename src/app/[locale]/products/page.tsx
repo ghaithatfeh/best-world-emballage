@@ -4,7 +4,7 @@ import CustomHeroSection from "@/components/CustomHeroSection";
 import ProductCard from "@/components/ProductCard";
 import FeaturedProductCard from "@/components/FeaturedProductCard";
 import ProductDetailsDialog from "@/components/ProductDetailsDialog";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -12,58 +12,18 @@ import PageEnd from "@/components/PageEnd";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
+import { products, type Product } from "@/data/products";
+import { categories, type Category } from "@/data/categories";
 
 const ProductsPage = () => {
 	const t = useTranslations();
-	const [selectedCategory, setSelectedCategory] = useState("all");
+	const locale = useLocale() as "en" | "ar" | "fr";
+	const [selectedCategory, setSelectedCategory] = useState<Category | null>(
+		null
+	);
 	const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
 	const [dialogOpen, setDialogOpen] = useState(false);
-	const [selectedProduct, setSelectedProduct] = useState<any>(null);
-
-	// Sample product data
-	const products = [
-		{
-			code: "0303",
-			title: "VIP Coffee Spoon",
-			material: t("Type Material"),
-			length: "165 mm",
-			weight: "1.9 g",
-			images: ["/hero-1.webp", "/hero-2.webp", "/hero-3.webp"],
-			colors: ["#D4AF37", "#4A5568", "#E5E5E5", "#FF0000", "#00FF00"],
-			additionalColors: 7,
-			isFeatured: true,
-		},
-		{
-			code: "0304",
-			title: "Premium Fork",
-			material: t("Type Material"),
-			length: "180 mm",
-			weight: "2.1 g",
-			images: ["/hero-2.webp", "/hero-1.webp", "/hero-3.webp"],
-			colors: ["#FFFFFF", "#000000", "#D4AF37"],
-			additionalColors: 5,
-			isFeatured: true,
-		},
-		{
-			code: "0305",
-			title: "Classic Knife",
-			material: t("Type Material"),
-			length: "170 mm",
-			weight: "2.0 g",
-			images: ["/hero-3.webp", "/hero-1.webp", "/hero-2.webp"],
-			colors: ["#4A5568", "#FFFFFF"],
-			additionalColors: 3,
-			isFeatured: false,
-		},
-	];
-
-	const categories = [
-		{ id: "all", label: t("All") },
-		{ id: "spoons", label: t("Spoons") },
-		{ id: "forks", label: t("Forks") },
-		{ id: "knifes", label: t("Knifes") },
-		{ id: "straws", label: t("Straws") },
-	];
+	const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
 	const filters = [
 		{ id: "filter1", label: t("Filter 1") },
@@ -71,14 +31,13 @@ const ProductsPage = () => {
 		{ id: "filter3", label: t("Filter 3") },
 	];
 
-	const handleProductClick = (product: any) => {
+	const handleProductClick = (product: Product) => {
 		setSelectedProduct(product);
 		setDialogOpen(true);
 	};
 
-
 	const handleClearAll = () => {
-		setSelectedCategory("all");
+		setSelectedCategory(null);
 		setSelectedFilters([]);
 	};
 
@@ -115,6 +74,28 @@ const ProductsPage = () => {
 								</div>
 
 								<div className="flex flex-col gap-3">
+									<label
+										className="flex items-center gap-3 cursor-pointer group"
+									>
+										<div className="relative flex items-center">
+											<input
+												type="radio"
+												name="category"
+												checked={!selectedCategory}
+												onChange={() => setSelectedCategory(null)}
+												className="appearance-none w-6 h-6 border-2 border-gray-300 rounded-full checked:border-[#DC2626] checked:border-[6px] transition-all cursor-pointer"
+											/>
+										</div>
+										<span
+											className={`text-base ${
+												!selectedCategory
+													? "text-[#DC2626] font-semibold"
+													: "text-[#6B7280]"
+											} group-hover:text-[#DC2626] transition-colors`}
+										>
+											{t("All")}
+										</span>
+									</label>
 									{categories.map((category) => (
 										<label
 											key={category.id}
@@ -125,29 +106,29 @@ const ProductsPage = () => {
 													type="radio"
 													name="category"
 													value={category.id}
-													checked={selectedCategory === category.id}
-													onChange={() => setSelectedCategory(category.id)}
+													checked={selectedCategory?.id === category.id}
+													onChange={() => setSelectedCategory(category)}
 													className="appearance-none w-6 h-6 border-2 border-gray-300 rounded-full checked:border-[#DC2626] checked:border-[6px] transition-all cursor-pointer"
 												/>
 											</div>
 											<span
 												className={`text-base ${
-													selectedCategory === category.id
+													selectedCategory?.id === category.id
 														? "text-[#DC2626] font-semibold"
 														: "text-[#6B7280]"
 												} group-hover:text-[#DC2626] transition-colors`}
 											>
-												{category.label}
+												{category.title[locale]}
 											</span>
 										</label>
 									))}
 								</div>
 							</div>
 
-							<Separator className="my-6" />
+							{/* <Separator className="my-6" /> */}
 
 							{/* Filters Section */}
-							<div className="">
+							{/* <div className="">
 								<h3 className="text-[#333333] text-xl font-semibold mb-6">
 									{t("Filters title")}
 								</h3>
@@ -170,7 +151,7 @@ const ProductsPage = () => {
 										</label>
 									))}
 								</div>
-							</div>
+							</div> */}
 						</aside>
 
 						{/* Products Grid */}
@@ -191,57 +172,69 @@ const ProductsPage = () => {
 									}}
 									modules={[Autoplay]}
 								>
-									{products.filter((product) => product.isFeatured).map((product, index) => (
-										<SwiperSlide key={index} className="pb-8">
-											<FeaturedProductCard
-												code={product.code}
-												title={product.title}
-												material={product.material}
-												length={product.length}
-												weight={product.weight}
-												image={product.images[0]}
-												colors={product.colors.slice(0, 3)}
-												additionalColors={product.additionalColors}
-												onClick={() => handleProductClick(product)}
-											/>
-										</SwiperSlide>
-									))}
+									{products
+										.filter((product) => product.isFeatured)
+										.map((product, index) => (
+											<SwiperSlide key={index} className="pb-8">
+												<FeaturedProductCard
+													code={product.code}
+													title={product.title[locale]}
+													material={product.material[locale]}
+													length={product.length.toString()}
+													weight={product.weight?.toString()}
+													diameter={product.diameter?.toString()}
+													image={product.images[0]}
+													colors={product.colors.slice(0, 3)}
+													additionalColors={product.additionalColors}
+													onClick={() => handleProductClick(product)}
+												/>
+											</SwiperSlide>
+										))}
 								</Swiper>
 							</div>
 
 							{/* Desktop Grid */}
 							<div className="hidden sm:grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
-								{products.filter((product) => product.isFeatured).map((product, index) => (
-									<FeaturedProductCard
-										key={index}
-										code={product.code}
-										title={product.title}
-										material={product.material}
-										length={product.length}
-										weight={product.weight}
-										image={product.images[0]}
-										colors={product.colors.slice(0, 3)}
-										additionalColors={product.additionalColors}
-										onClick={() => handleProductClick(product)}
-									/>
-								))}
+								{products
+									.filter((product) => product.isFeatured)
+									.map((product, index) => (
+										<FeaturedProductCard
+											key={index}
+											code={product.code}
+											title={product.title[locale]}
+											material={product.material[locale]}
+											length={product.length.toString()}
+											weight={product.weight?.toString()}
+											diameter={product.diameter?.toString()}
+											image={product.images[0]}
+											colors={product.colors.slice(0, 3)}
+											additionalColors={product.additionalColors}
+											onClick={() => handleProductClick(product)}
+										/>
+									))}
 							</div>
 
 							<h3 className="text-[#333333] text-xl font-semibold mb-6">
 								{t("All Products")}
 							</h3>
 							<div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
-								{products.map((product, index) => (
-									<ProductCard
-										key={index}
-										code={product.code}
-										title={product.title}
-										image={product.images[0]}
-										colors={product.colors.slice(0, 3)}
-										additionalColors={product.additionalColors}
-										onClick={() => handleProductClick(product)}
-									/>
-								))}
+								{products
+									.filter(
+										(product) =>
+											selectedCategory?.id === product.categoryId ||
+											!selectedCategory
+									)
+									.map((product, index) => (
+										<ProductCard
+											key={index}
+											code={product.code}
+											title={product.title[locale]}
+											image={product.images[0]}
+											colors={product.colors.slice(0, 3)}
+											additionalColors={product.additionalColors}
+											onClick={() => handleProductClick(product)}
+										/>
+									))}
 							</div>
 						</div>
 					</div>
@@ -254,13 +247,16 @@ const ProductsPage = () => {
 					open={dialogOpen}
 					onOpenChange={setDialogOpen}
 					product={selectedProduct}
+					locale={locale}
 				/>
 			)}
 
 			<PageEnd
-				text={t(
-					"Ready to place your order or need a custom solution? Get in touch with us today to discuss your requirements"
-				) + "."}
+				text={
+					t(
+						"Ready to place your order or need a custom solution? Get in touch with us today to discuss your requirements"
+					) + "."
+				}
 				btnLabel={t("Contact Us")}
 				btnLink="/contact"
 			/>

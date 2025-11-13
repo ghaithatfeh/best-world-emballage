@@ -9,26 +9,20 @@ import {
 import { useTranslations, useLocale } from "next-intl";
 import { useState } from "react";
 import { ChevronLeft, ChevronRight, X, Phone, Mail } from "lucide-react";
+import { Product } from "@/data/products";
 
 interface ProductDetailsDialogProps {
 	open: boolean;
 	onOpenChange: (open: boolean) => void;
-	product: {
-		code: string;
-		title: string;
-		material: string;
-		length: string;
-		weight: string;
-		images: string[];
-		colors: string[];
-		additionalColors?: number;
-	};
+	product: Product;
+	locale: "en" | "ar" | "fr";
 }
 
 const ProductDetailsDialog = ({
 	open,
 	onOpenChange,
 	product,
+	locale: currentLocale,
 }: ProductDetailsDialogProps) => {
 	const t = useTranslations();
 	const locale = useLocale();
@@ -52,7 +46,7 @@ const ProductDetailsDialog = ({
 			<DialogContent className="max-w-6xl p-0 gap-0 bg-[#fffcf5] overflow-y-auto max-h-[90vh]">
                 <DialogHeader>
 					<DialogTitle className="md:hidden text-3xl font-bold text-[#333333] pt-6">
-						{product.title}
+						{product.title[currentLocale]}
 					</DialogTitle>
 				</DialogHeader>
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-9">
@@ -62,7 +56,7 @@ const ProductDetailsDialog = ({
 						<div className="relative bg-[#3B4054] rounded-3xl overflow-hidden aspect-square">
 							<img
 								src={product.images[selectedImageIndex]}
-								alt={product.title}
+								alt={product.title[currentLocale]}
 								className="w-full h-full object-cover"
 							/>
 						</div>
@@ -93,7 +87,7 @@ const ProductDetailsDialog = ({
 									>
 										<img
 											src={image}
-											alt={`${product.title} ${index + 1}`}
+											alt={`${product.title[currentLocale]} ${index + 1}`}
 											className="w-full h-full object-cover"
 										/>
 									</button>
@@ -113,35 +107,48 @@ const ProductDetailsDialog = ({
 						</div>
 					</div>
 
-					{/* Right Side - Details */}
-					<div className="space-y-6">
-						{/* Product Title */}
-						<h2 className="hidden md:block text-3xl font-bold text-[#333333]">
-							{product.title}
-						</h2>
+				{/* Right Side - Details */}
+				<div className="space-y-6">
+					{/* Product Title */}
+					<h2 className="hidden md:block text-3xl font-bold text-[#333333]">
+						{product.title[currentLocale]}
+					</h2>
 
-						{/* Product Code */}
-						<p className="text-[#DC2626] text-lg font-semibold">
-							{t("Product Code")}: {product.code}
-						</p>
+					{/* Product Code */}
+					<p className="text-[#DC2626] text-lg font-semibold">
+						{t("Product Code")}: {product.code}
+					</p>
 
-						{/* Product Description */}
+					{/* Product Description */}
+					<div className="space-y-1">
+						<h3 className="text-lg font-bold text-[#333333]">
+							{t("Product Description")}
+						</h3>
 						<div className="space-y-1">
-							<h3 className="text-lg font-bold text-[#333333]">
-								{t("Product Description")}
-							</h3>
-							<div className="space-y-1">
+							<p className="text-[#333333] text-base">
+								{t("Type Material")}: {product.material[currentLocale]}
+							</p>
+							<p className="text-[#333333] text-base">
+								{t("Length Piece")}: {product.length} {t("mm")}
+							</p>
+							{product.weight && (
 								<p className="text-[#333333] text-base">
-									PS : {product.material}
+									{t("Weight Piece")}: {product.weight} {t("g")}
 								</p>
+							)}
+							{product.diameter && (
 								<p className="text-[#333333] text-base">
-									{t("Length Piece")}: {product.length}
+									{t("Diameter")}: {product.diameter} {t("mm")}
 								</p>
-								<p className="text-[#333333] text-base">
-									{t("Weight Piece")}: {product.weight}
-								</p>
-							</div>
+							)}
+							<p className="text-[#333333] text-base">
+								{t("Quantity Per Bag")}: {product.quantityBag} {t("pcs")}
+							</p>
+							<p className="text-[#333333] text-base">
+								{t("Quantity Per Box")}: {product.quantityBox} {t("pcs")}
+							</p>
 						</div>
+					</div>
 
 						{/* Available Colors */}
 						<div className="space-y-2">

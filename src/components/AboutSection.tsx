@@ -50,7 +50,7 @@ const AboutSection = () => {
 					</div>
 
 					{/* Center Image */}
-					<div className="flex-1 flex justify-center relative">
+					<div className="flex-1 flex justify-center relative my-6 md:my-0">
 						<img
 							src="/about-section.webp"
 							alt="Colorful straws"
@@ -74,10 +74,10 @@ const AboutSection = () => {
 						))}
 					</div>
 				</div>
-				<div className="mt-28 relative">
-					<p className="text-4xl leading-relaxed tracking-wide text-[#333] mt-5 text-center">
+				<div className="mt-20 md:mt-28 relative">
+					<p className="text-3xl md:text-4xl !leading-relaxed tracking-wide text-[#333] mt-5 text-center">
 						{t("More than")}{" "}
-						<span className="text-secondary">
+						<span className="text-secondary font-bold">
 							{t("ten years of experience")}
 						</span>{" "}
 						{t(

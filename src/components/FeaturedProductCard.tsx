@@ -8,7 +8,8 @@ interface FeaturedProductCardProps {
 	title: string;
 	material: string;
 	length: string;
-	weight: string;
+	weight?: string;
+	diameter?: string;
 	image: string;
 	colors?: string[];
 	additionalColors?: number;
@@ -21,6 +22,7 @@ const FeaturedProductCard = ({
 	material,
 	length,
 	weight,
+	diameter,
 	image,
 	colors = [],
 	additionalColors = 0,
@@ -65,14 +67,21 @@ const FeaturedProductCard = ({
 					{/* Product Specifications */}
 					<div className="space-y-1 mb-2">
 						<p className="text-[#9CA3AF] text-base">
-							<span className="font-medium">PS :</span>{material}
+							<span className="font-medium">{t("Type Material")}:</span> {material}
 						</p>
 						<p className="text-[#9CA3AF] text-base">
-							<span className="font-medium">{t("Length Piece")}:</span> {length}
+							<span className="font-medium">{t("Length Piece")}:</span> {length} {t("mm")}
 						</p>
-						<p className="text-[#9CA3AF] text-base">
-							<span className="font-medium">{t("Weight Piece")}:</span> {weight}
-						</p>
+						{weight && (
+							<p className="text-[#9CA3AF] text-base">
+								<span className="font-medium">{t("Weight Piece")}:</span> {weight} {t("g")}
+							</p>
+						)}
+						{diameter && (
+							<p className="text-[#9CA3AF] text-base">
+								<span className="font-medium">{t("Diameter")}:</span> {diameter} {t("mm")}
+							</p>
+						)}
 					</div>
 
 					{/* Color Options */}

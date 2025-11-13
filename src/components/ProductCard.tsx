@@ -1,9 +1,8 @@
 "use client";
 
 import { Card } from "@/components/ui/card";
-import { useTranslations } from "next-intl";
-import { ChevronRight } from "lucide-react";
-import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface ProductProps {
 	code: string;
@@ -23,7 +22,7 @@ const ProductCard = ({
 	onClick,
 }: ProductProps) => {
 	const t = useTranslations();
-
+	const locale = useLocale() as "en" | "ar" | "fr";
 	return (
 		<Card 
 			className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 group cursor-pointer"
@@ -73,13 +72,17 @@ const ProductCard = ({
 					{title}
 				</h3>
 
-				{/* Learn More Link */}
-				<button
-					className="text-sm inline-flex items-center gap-1 text-[#232B55] font-semibold hover:gap-2 transition-all group/link"
-				>
-					{t("Learn More")}
-					<ChevronRight className="w-5 h-5 group-hover/link:translate-x-1 transition-transform" />
-				</button>
+			{/* Learn More Link */}
+			<button
+				className="text-sm inline-flex text-[#232B55] font-semibold group-hover:gap-1 transition-all leading-[1.6]"
+			>
+				{t("Learn More")}
+				{locale === "ar" ? (
+					<ChevronLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+				) : (
+					<ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+				)}
+			</button>
 			</div>
 		</Card>
 	);

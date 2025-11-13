@@ -2,7 +2,7 @@
 
 import Heading from "./Heading";
 import { Button } from "./ui/button";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import ProductCard from "./ProductCard";
@@ -10,74 +10,18 @@ import { FaPaperPlane } from "react-icons/fa";
 import { Link } from "@/i18n/routing";
 import ProductDetailsDialog from "./ProductDetailsDialog";
 import { useState } from "react";
+import { products, type Product } from "@/data/products";
 
 const AboutSection = () => {
 	const t = useTranslations();
+	const locale = useLocale() as "en" | "ar" | "fr";
 	const [dialogOpen, setDialogOpen] = useState(false);
-	const [selectedProduct, setSelectedProduct] = useState<any>(null);
+	const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
-	const handleProductClick = (product: any) => {
+	const handleProductClick = (product: Product) => {
 		setSelectedProduct(product);
 		setDialogOpen(true);
 	};
-
-	const products = [
-		{
-			code: "0303",
-			title: "VIP Coffee Spoon",
-			material: t("Type Material"),
-			length: "165 mm",
-			weight: "1.9 g",
-			images: ["/hero-1.webp", "/hero-2.webp", "/hero-3.webp"],
-			colors: ["#D4AF37", "#4A5568", "#E5E5E5", "#FF0000", "#00FF00"],
-			additionalColors: 7,
-			isFeatured: true,
-		},
-		{
-			code: "0304",
-			title: "Premium Fork",
-			material: t("Type Material"),
-			length: "180 mm",
-			weight: "2.1 g",
-			images: ["/hero-2.webp", "/hero-1.webp", "/hero-3.webp"],
-			colors: ["#FFFFFF", "#000000", "#D4AF37"],
-			additionalColors: 5,
-			isFeatured: true,
-		},
-		{
-			code: "0305",
-			title: "Classic Knife",
-			material: t("Type Material"),
-			length: "170 mm",
-			weight: "2.0 g",
-			images: ["/hero-3.webp", "/hero-1.webp", "/hero-2.webp"],
-			colors: ["#4A5568", "#FFFFFF"],
-			additionalColors: 3,
-			isFeatured: false,
-		},
-		{
-			code: "0305",
-			title: "Classic Knife",
-			material: t("Type Material"),
-			length: "170 mm",
-			weight: "2.0 g",
-			images: ["/hero-3.webp", "/hero-1.webp", "/hero-2.webp"],
-			colors: ["#4A5568", "#FFFFFF"],
-			additionalColors: 3,
-			isFeatured: false,
-		},
-		{
-			code: "0303",
-			title: "VIP Coffee Spoon",
-			material: t("Type Material"),
-			length: "165 mm",
-			weight: "1.9 g",
-			images: ["/hero-1.webp", "/hero-2.webp", "/hero-3.webp"],
-			colors: ["#D4AF37", "#4A5568", "#E5E5E5", "#FF0000", "#00FF00"],
-			additionalColors: 7,
-			isFeatured: true,
-		},
-	];
 
 	return (
 		<section
@@ -88,7 +32,6 @@ const AboutSection = () => {
 				<Heading className="text-center mb-12">{t("Top Products")}</Heading>
 				<Swiper
 					spaceBetween={20}
-					slidesPerView={4}
 					loop={true}
 					autoplay={{
 						delay: 3000,
@@ -96,14 +39,25 @@ const AboutSection = () => {
 					}}
 					pagination={{
 						clickable: true,
+						bulletClass: "swiper-pagination-bullet",
+						bulletActiveClass: "swiper-pagination-bullet-active-primary",
+					}}
+					breakpoints={{
+						768: {
+							slidesPerView: 2,
+						},
+						992: {
+							slidesPerView: 4,
+						},
 					}}
 					modules={[Autoplay, Pagination]}
+					className="products-swiper"
 				>
-					{products.map((product, index) => (
+					{products.filter((product) => product.topProducts).map((product, index) => (
 						<SwiperSlide key={index} className="pb-16">
 							<ProductCard
 								code={product.code}
-								title={product.title}
+								title={product.title[locale]}
 								image={product.images[0]}
 								colors={product.colors.slice(0, 3)}
 								additionalColors={product.additionalColors}
@@ -119,10 +73,11 @@ const AboutSection = () => {
 						open={dialogOpen}
 						onOpenChange={setDialogOpen}
 						product={selectedProduct}
+						locale={locale}
 					/>
 				)}
 
-				<div className="flex justify-center mt-8">
+				<div className="flex justify-center mt-6">
 					<Link href="/products">
 						<Button className="bg-primary rounded-full px-8 h-12">
 							{t("See All Products")}

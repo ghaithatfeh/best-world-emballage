@@ -34,7 +34,8 @@
     "Send": "Send",
     "Quick Links": "Quick Links",
     "Your Email": "Your Email",
-    "Copyrights": "Copyrights",
+    "Copyright": "Copyright",
+    "All rights reserved": "All rights reserved",
     "We are proud to offer a wide and distinct range of high-quality, healthy and uniquely designed plastic products that also meet the needs of our clients in Morocco and all over the world": "We are proud to offer a wide and distinct range of high-quality, healthy and uniquely designed plastic products that also meet the needs of our clients in Morocco and all over the world",
     "Morocco, Al-Dar Al-Baidaa, Darb Omar, Khrebka ST": "Morocco, Al-Dar Al-Baidaa, Darb Omar, Khrebka ST",
     "Discover Products": "Discover Products",
@@ -78,5 +79,11 @@
     "Available Colors": "Available Colors",
     "Like this product? Contact us if you need any further information": "Like this product? Contact us if you need any further information",
     "Top Products": "Top Products",
-    "See All Products": "See All Products"
+    "See All Products": "See All Products",
+    "mm": "mm",
+    "g": "g",
+    "Quantity Per Bag": "Quantity Per Bag",
+    "Quantity Per Box": "Quantity Per Box",
+    "pcs": "pieces",
+    "Diameter": "Diameter"
 }

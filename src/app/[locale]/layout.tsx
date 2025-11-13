@@ -31,8 +31,8 @@ export default async function RootLayout({
 	setRequestLocale(locale);
 
 	return (
-		<html lang={locale}  dir={locale === "ar" ? "rtl" : "ltr"} className="scroll-smooth overflow-x-hidden">
-			<body className={`${balooBhaina2.variable} ${tajawal.variable} overflow-x-hidden`}>
+		<html lang={locale}  dir={locale === "ar" ? "rtl" : "ltr"} className="scroll-smooth overflow-x-hidden md:overflow-x-visible">
+			<body className={`${balooBhaina2.variable} ${tajawal.variable} overflow-x-hidden md:overflow-x-visible`}>
 				<NextIntlClientProvider>
 					<Header />
 					{children}
