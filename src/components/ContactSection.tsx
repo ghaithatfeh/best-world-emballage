@@ -9,10 +9,17 @@ import { Textarea } from "@/components/ui/textarea";
 import { FaPaperPlane } from "react-icons/fa";
 import { GoogleMapsEmbed } from "@next/third-parties/google";
 import { useLocale, useTranslations } from "next-intl";
+import { useForm, ValidationError } from '@formspree/react';
+
 
 export const ContactSection = ({ withIcon = true }: { withIcon?: boolean }) => {
 	const t = useTranslations();
 	const locale = useLocale();
+
+	const [state, handleSubmit] = useForm("mrbrbvjw");
+	// if (state.succeeded) {
+	// 	toast.success(t("Message sent successfully"));
+	// }
 
 	// Contact info data
 	const contactInfo = [
@@ -80,7 +87,7 @@ export const ContactSection = ({ withIcon = true }: { withIcon?: boolean }) => {
 				</div>
 
 				{/* Contact Form */}
-				<form className="flex flex-col gap-6 flex-1">
+				<form onSubmit={handleSubmit} className="flex flex-col gap-6 flex-1">
 					{withIcon && (
 						<h3 className="font-['Baloo_Bhaina_2',Helvetica] font-medium text-[#333333] text-3xl leading-[30px]">
 							{t("Contact Us")}
@@ -92,31 +99,53 @@ export const ContactSection = ({ withIcon = true }: { withIcon?: boolean }) => {
 								className="h-12 bg-white rounded-2xl focus:border-[#ffc85b] focus-visible:ring-0"
 								placeholder={t("First Name")}
 							/>
+							<ValidationError 
+								prefix="First Name" 
+								field="first_name"
+								errors={state.errors}
+							/>
 							<Input
 								className="h-12 bg-white rounded-2xl focus:border-[#ffc85b] focus-visible:ring-0"
 								placeholder={t("Last Name")}
+							/>
+							<ValidationError 
+								prefix="Last Name" 
+								field="last_name"
+								errors={state.errors}
 							/>
 						</div>
 						<Input
 							className="h-12 bg-white rounded-2xl focus:border-[#ffc85b] focus-visible:ring-0"
 							placeholder={t("Email")}
 						/>
+						<ValidationError 
+							prefix="Email" 
+							field="email"
+							errors={state.errors}
+						/>
 						<Textarea
 							className="h-[165px] bg-white rounded-2xl focus:border-[#ffc85b] focus-visible:ring-0 py-3"
 							placeholder={t("Your Message")}
+						/>
+						<ValidationError 
+							prefix="Message" 
+							field="message"
+							errors={state.errors}
 						/>
 					</div>
 					<div className="flex items-center">
 						<Button
 							type="submit"
 							className="bg-primary rounded-full px-8 h-12"
+							disabled={state.submitting}
 						>
-							{t("Send")}
+							{state.submitting ? t("Sending") + "..." : t("Send")}
 						</Button>
 						<Button
 							size="icon"
 							className="bg-primary rounded-full h-12 w-12 ml-0"
 							type="submit"
+							disabled={state.submitting}
 						>
 							<FaPaperPlane className="h-3 w-3" />
 						</Button>
