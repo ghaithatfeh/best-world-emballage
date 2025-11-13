@@ -79,7 +79,7 @@ const FeaturedProductCard = ({
 						)}
 						{diameter && (
 							<p className="text-[#9CA3AF] text-base">
-								<span className="font-medium">{t("Diameter")}:</span> {diameter} {t("mm")}
+								<span className="font-medium">{t("Diameter Piece")}:</span> {diameter} {t("mm")}
 							</p>
 						)}
 					</div>

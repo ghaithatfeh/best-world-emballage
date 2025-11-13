@@ -138,7 +138,7 @@ const ProductDetailsDialog = ({
 							)}
 							{product.diameter && (
 								<p className="text-[#333333] text-base">
-									{t("Diameter")}: {product.diameter} {t("mm")}
+									{t("Diameter Piece")}: {product.diameter} {t("mm")}
 								</p>
 							)}
 							<p className="text-[#333333] text-base">
