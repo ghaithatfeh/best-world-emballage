@@ -5,7 +5,7 @@ const useLinks = () => {
 	const pathname = usePathname();
 	const t = useTranslations();
 
-	const links = [
+	const navLinks = [
 		{
 			name: t("Home"),
 			href: "/",
@@ -28,7 +28,11 @@ const useLinks = () => {
 		},
 	];
 
-	return { links };
+	const socialLinks = {
+		facebook: "https://www.facebook.com/profile.php?id=100076417875791",
+	};
+
+	return { navLinks, socialLinks };
 };
 
 export default useLinks;

@@ -8,14 +8,14 @@ import {
 	FaPaperPlane,
 } from "react-icons/fa";
 import { useTranslations } from "next-intl";
-import { usePathname, Link } from "@/i18n/routing";
+import { Link } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 import useLinks from "@/hooks/useLinks";
 
 const Footer = () => {
 	const t = useTranslations();
 
-	const { links } = useLinks();
+	const { navLinks, socialLinks } = useLinks();
 
 	const currentYear = new Date().getFullYear();
 
@@ -40,7 +40,7 @@ const Footer = () => {
 				<div className="flex flex-col items-center md:items-start">
 					<h3 className="text-xl font-bold mb-4">{t("Quick Links")}</h3>
 					<ul className="grid grid-cols-4 md:grid-cols-1 gap-3 md:gap-2">
-						{links.map((l) => (
+						{navLinks.map((l) => (
 							<li key={l.name} className="text-center md:text-start">
 								<Link
 									href={l.href}
@@ -75,7 +75,7 @@ const Footer = () => {
 						</button>
 					</form>
 					<div className="flex gap-6 mt-2">
-						<a href="#" target="_blank" rel="noopener noreferrer">
+						<a href={socialLinks.facebook} target="_blank" rel="noopener noreferrer">
 							<FaFacebook className="w-5 h-5 text-white hover:text-blue-600 transition" />
 						</a>
 						<a href="#" target="_blank" rel="noopener noreferrer">

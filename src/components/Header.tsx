@@ -20,11 +20,7 @@ const Header = () => {
 	const t = useTranslations();
 	const pathname = usePathname();
 
-	const { links: navItems } = useLinks();
-
-	const socialLinks = {
-		facebook: "https://www.facebook.com/profile.php?id=100076417875791",
-	};
+	const { navLinks, socialLinks } = useLinks();
 
 	return (
 		<header className="bg-transparent absolute top-0 left-0 w-full z-50">
@@ -34,7 +30,7 @@ const Header = () => {
 				</Link>
 				<nav className="hidden md:block">
 					<ul className="flex items-center gap-6 lg:gap-12">
-						{navItems.map((item) => (
+						{navLinks.map((item) => (
 							<li key={item.name} className="flex items-center gap-2">
 								{item.active && (
 									<svg
@@ -111,7 +107,7 @@ const Header = () => {
 								<span className="text-xl font-bold">{t("Menu")}</span>
 							</div>
 							<ul className="flex-1 flex flex-col gap-2 p-6">
-								{navItems.map((item) => (
+								{navLinks.map((item) => (
 									<li key={item.name}>
 										<Link
 											href={item.href}
