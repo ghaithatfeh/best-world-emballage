@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { ContactSection } from "@/components/ContactSection";
 import CustomHeroSection from "@/components/CustomHeroSection";
 import { PhoneIcon, MailIcon, MapPinIcon } from "lucide-react";
@@ -55,7 +56,9 @@ const ContactPage = () => {
 				))}
 			</div>
 			<div className="bg-[url('/contact-page.png')] md:bg-contain bg-no-repeat pt-[26rem] xs:pt-72 md:pt-28">
-				<ContactSection withIcon={false} />
+				<Suspense fallback={<div className="pt-20" />}>
+					<ContactSection withIcon={false} />
+				</Suspense>
 			</div>
 		</main>
 	);

@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import { ContactSection } from "@/components/ContactSection";
@@ -9,7 +10,9 @@ const HomePage = () => {
 			<HeroSection />
 			<AboutSection />
 			<ProductsSection />
-			<ContactSection />
+			<Suspense fallback={<div className="pt-20" />}>
+				<ContactSection />
+			</Suspense>
 		</main>
 	);
 }
