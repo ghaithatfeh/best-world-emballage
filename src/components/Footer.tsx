@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import {
 	FaFacebook,
 	FaInstagram,
@@ -8,16 +8,25 @@ import {
 	FaPaperPlane,
 } from "react-icons/fa";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/routing";
+import { Link, useRouter } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 import useLinks from "@/hooks/useLinks";
 
 const Footer = () => {
 	const t = useTranslations();
-
+	const router = useRouter();
 	const { navLinks, socialLinks } = useLinks();
+	const [message, setMessage] = useState("");
 
 	const currentYear = new Date().getFullYear();
+
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		if (message.trim()) {
+			router.push(`/contact?message=${encodeURIComponent(message.trim())}`);
+			setMessage("");
+		}
+	};
 
 	return (
 		<footer className="bg-primary text-white pt-12 pb-4 relative overflow-hidden">
@@ -60,11 +69,13 @@ const Footer = () => {
 					<h3 className="text-xl font-bold mb-4">{t("Contact Us")}</h3>
 					<form
 						className="flex w-full max-w-xs mb-6"
-						onSubmit={(e) => e.preventDefault()}
+						onSubmit={handleSubmit}
 					>
 						<input
 							type="text"
 							placeholder={t("Your Message")}
+							value={message}
+							onChange={(e) => setMessage(e.target.value)}
 							className="flex-1 px-4 py-2 ltr:rounded-l-full rtl:rounded-r-full bg-transparent border border-white/60 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-secondary"
 						/>
 						<button

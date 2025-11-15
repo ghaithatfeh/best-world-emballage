@@ -1,7 +1,7 @@
 "use client";
 
 import { MapPinIcon, MailIcon, PhoneIcon, SendIcon } from "lucide-react";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -11,12 +11,23 @@ import { GoogleMapsEmbed } from "@next/third-parties/google";
 import { useLocale, useTranslations } from "next-intl";
 import { useForm, ValidationError } from "@formspree/react";
 import { toast } from "react-hot-toast";
+import { useSearchParams } from "next/navigation";
 
 export const ContactSection = ({ withIcon = true }: { withIcon?: boolean }) => {
 	const t = useTranslations();
 	const locale = useLocale();
+	const searchParams = useSearchParams();
 	const formRef = useRef<HTMLFormElement>(null);
 	const [state, handleSubmit] = useForm("mrbrbvjw");
+
+	// Read message from URL params and pre-fill the textarea and set focus on it
+	useEffect(() => {
+		const messageParam = searchParams.get("message");
+		if (messageParam && formRef.current) {
+			(formRef.current.querySelector("textarea") as HTMLTextAreaElement).value = messageParam;
+			formRef.current.querySelector("textarea")?.focus();
+		}
+	}, [searchParams]);
 
 	useEffect(() => {
 		if (!state.submitting && state.succeeded) {
