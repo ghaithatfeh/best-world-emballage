@@ -25,7 +25,7 @@ export const products: Product[] = [
 	{
 		code: "0303",
 		categoryId: 1,
-			title: {
+		title: {
 			en: "Table Spoon",
 			ar: "العاشق كبيرة",
 			fr: "Cuillère à soupe",
@@ -48,7 +48,7 @@ export const products: Product[] = [
 	{
 		code: "0307",
 		categoryId: 1,
-			title: {
+		title: {
 			en: "Coffee Spoon",
 			ar: "العاشق صغيرة",
 			fr: "Petite Cuillère",
@@ -70,7 +70,7 @@ export const products: Product[] = [
 	{
 		code: "0307",
 		categoryId: 1,
-			title: {
+		title: {
 			en: "VIP Coffee Spoon",
 			ar: "العاشق صغيرة (مرتبة)",
 			fr: "VIP Petite Cuillère",
@@ -92,7 +92,7 @@ export const products: Product[] = [
 	{
 		code: "0311",
 		categoryId: 2,
-			title: {
+		title: {
 			en: "Fork",
 			ar: "الفرشيت",
 			fr: "Fourchette",
@@ -114,7 +114,7 @@ export const products: Product[] = [
 	{
 		code: "0309",
 		categoryId: 3,
-			title: {
+		title: {
 			en: "Knife",
 			ar: "الموس",
 			fr: "Couteau",
@@ -137,7 +137,7 @@ export const products: Product[] = [
 	{
 		code: "0101",
 		categoryId: 4,
-			title: {
+		title: {
 			en: "Straight Straw",
 			ar: "ليباي مستقيمة",
 			fr: "Paille droite",
