@@ -130,7 +130,7 @@ const ProductsPage = () => {
 							{/* Filters Section */}
 							{/* <div className="">
 								<h3 className="text-[#333333] text-xl font-semibold mb-6">
-									{t("Filters title")}
+									{t("Filters")}
 								</h3>
 
 								<div className="flex flex-col gap-3">
