@@ -7,13 +7,19 @@ import ProductDetailsDialog from "@/components/ProductDetailsDialog";
 import { useTranslations, useLocale } from "next-intl";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+import {
+	Accordion,
+	AccordionContent,
+	AccordionItem,
+	AccordionTrigger,
+} from "@/components/ui/accordion";
 import PageEnd from "@/components/PageEnd";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import { products, type Product } from "@/data/products";
 import { categories, type Category } from "@/data/categories";
+import { Separator } from "@/components/ui/separator";
 
 const ProductsPage = () => {
 	const t = useTranslations();
@@ -21,15 +27,8 @@ const ProductsPage = () => {
 	const [selectedCategory, setSelectedCategory] = useState<Category | null>(
 		null
 	);
-	const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
 	const [dialogOpen, setDialogOpen] = useState(false);
 	const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-
-	const filters = [
-		{ id: "filter1", label: t("Filter 1") },
-		{ id: "filter2", label: t("Filter 2") },
-		{ id: "filter3", label: t("Filter 3") },
-	];
 
 	const handleProductClick = (product: Product) => {
 		setSelectedProduct(product);
@@ -38,15 +37,6 @@ const ProductsPage = () => {
 
 	const handleClearAll = () => {
 		setSelectedCategory(null);
-		setSelectedFilters([]);
-	};
-
-	const handleFilterToggle = (filterId: string) => {
-		setSelectedFilters((prev) =>
-			prev.includes(filterId)
-				? prev.filter((id) => id !== filterId)
-				: [...prev, filterId]
-		);
 	};
 
 	return (
@@ -63,95 +53,122 @@ const ProductsPage = () => {
 									<h3 className="text-[#333333] text-xl font-semibold">
 										{t("Categories")}
 									</h3>
-									<Button
+									{/* <Button
 										variant="ghost"
 										size="sm"
 										onClick={handleClearAll}
 										className="bg-[#4A5568] hover:bg-[#4A5568]/90 text-white rounded-full px-4 h-9 text-sm"
 									>
 										{t("Clear All")}
-									</Button>
+									</Button> */}
 								</div>
 
-								<div className="flex flex-col gap-3">
-									<label
-										className="flex items-center gap-3 cursor-pointer group"
+								{/* All Categories Option */}
+								<label className="flex items-center gap-3 cursor-pointer group mb-3">
+									<div className="relative flex items-center">
+										<input
+											type="radio"
+											name="category"
+											checked={!selectedCategory}
+											onChange={() => setSelectedCategory(null)}
+											className="appearance-none w-6 h-6 border-2 border-gray-300 rounded-full checked:border-[#DC2626] checked:border-[6px] transition-all cursor-pointer"
+										/>
+									</div>
+									<span
+										className={`text-base ${
+											!selectedCategory
+												? "text-[#DC2626] font-semibold"
+												: "text-[#6B7280]"
+										} group-hover:text-[#DC2626] transition-colors`}
 									>
-										<div className="relative flex items-center">
-											<input
-												type="radio"
-												name="category"
-												checked={!selectedCategory}
-												onChange={() => setSelectedCategory(null)}
-												className="appearance-none w-6 h-6 border-2 border-gray-300 rounded-full checked:border-[#DC2626] checked:border-[6px] transition-all cursor-pointer"
-											/>
-										</div>
-										<span
-											className={`text-base ${
-												!selectedCategory
-													? "text-[#DC2626] font-semibold"
-													: "text-[#6B7280]"
-											} group-hover:text-[#DC2626] transition-colors`}
+										{t("All Products")}
+									</span>
+								</label>
+
+								<Separator />
+
+								{/* Accordion for Main Categories */}
+								<Accordion
+									type="multiple"
+									className="w-full"
+									defaultValue={categories.map((cat) => `category-${cat.id}`)}
+								>
+									{categories.map((mainCategory) => (
+										<AccordionItem
+											key={mainCategory.id}
+											value={`category-${mainCategory.id}`}
+											className="border-b border-gray-200"
 										>
-											{t("All")}
-										</span>
-									</label>
-									{categories.map((category) => (
-										<label
-											key={category.id}
-											className="flex items-center gap-3 cursor-pointer group"
-										>
-											<div className="relative flex items-center">
-												<input
-													type="radio"
-													name="category"
-													value={category.id}
-													checked={selectedCategory?.id === category.id}
-													onChange={() => setSelectedCategory(category)}
-													className="appearance-none w-6 h-6 border-2 border-gray-300 rounded-full checked:border-[#DC2626] checked:border-[6px] transition-all cursor-pointer"
-												/>
-											</div>
-											<span
-												className={`text-base ${
-													selectedCategory?.id === category.id
-														? "text-[#DC2626] font-semibold"
-														: "text-[#6B7280]"
-												} group-hover:text-[#DC2626] transition-colors`}
-											>
-												{category.title[locale]}
-											</span>
-										</label>
+											<AccordionTrigger className="text-[#333333] hover:text-[#DC2626] hover:no-underline py-3">
+												<span className="text-base font-medium">
+													{mainCategory.title[locale]}
+												</span>
+											</AccordionTrigger>
+											<AccordionContent>
+												<div className="flex flex-col gap-3 pl-2">
+													{/* All option for this main category */}
+													<label className="flex items-center gap-3 cursor-pointer group">
+														<div className="relative flex items-center">
+															<input
+																type="radio"
+																name="category"
+																checked={
+																	selectedCategory?.id === mainCategory.id
+																}
+																onChange={() =>
+																	setSelectedCategory(mainCategory)
+																}
+																className="appearance-none w-6 h-6 border-2 border-gray-300 rounded-full checked:border-[#DC2626] checked:border-[6px] transition-all cursor-pointer"
+															/>
+														</div>
+														<span
+															className={`text-base ${
+																selectedCategory?.id === mainCategory.id
+																	? "text-[#DC2626] font-semibold"
+																	: "text-[#6B7280]"
+															} group-hover:text-[#DC2626] transition-colors`}
+														>
+															{t("All")}
+														</span>
+													</label>
+
+													{/* Subcategories */}
+													{mainCategory.subCategory?.map((subCategory) => (
+														<label
+															key={subCategory.id}
+															className="flex items-center gap-3 cursor-pointer group"
+														>
+															<div className="relative flex items-center">
+																<input
+																	type="radio"
+																	name="category"
+																	value={subCategory.id}
+																	checked={
+																		selectedCategory?.id === subCategory.id
+																	}
+																	onChange={() =>
+																		setSelectedCategory(subCategory)
+																	}
+																	className="appearance-none w-6 h-6 border-2 border-gray-300 rounded-full checked:border-[#DC2626] checked:border-[6px] transition-all cursor-pointer"
+																/>
+															</div>
+															<span
+																className={`text-base ${
+																	selectedCategory?.id === subCategory.id
+																		? "text-[#DC2626] font-semibold"
+																		: "text-[#6B7280]"
+																} group-hover:text-[#DC2626] transition-colors`}
+															>
+																{subCategory.title[locale]}
+															</span>
+														</label>
+													))}
+												</div>
+											</AccordionContent>
+										</AccordionItem>
 									))}
-								</div>
+								</Accordion>
 							</div>
-
-							{/* <Separator className="my-6" /> */}
-
-							{/* Filters Section */}
-							{/* <div className="">
-								<h3 className="text-[#333333] text-xl font-semibold mb-6">
-									{t("Filters")}
-								</h3>
-
-								<div className="flex flex-col gap-3">
-									{filters.map((filter) => (
-										<label
-											key={filter.id}
-											className="flex items-center gap-3 cursor-pointer group"
-										>
-											<input
-												type="checkbox"
-												checked={selectedFilters.includes(filter.id)}
-												onChange={() => handleFilterToggle(filter.id)}
-												className="w-5 h-5 border-2 border-gray-300 rounded checked:bg-[#DC2626] checked:border-[#DC2626] cursor-pointer accent-[#DC2626]"
-											/>
-											<span className="text-base text-[#6B7280] group-hover:text-[#DC2626] transition-colors">
-												{filter.label}
-											</span>
-										</label>
-									))}
-								</div>
-							</div> */}
 						</aside>
 
 						{/* Products Grid */}
@@ -215,15 +232,30 @@ const ProductsPage = () => {
 							</div>
 
 							<h3 className="text-[#333333] text-xl font-semibold mb-6">
-								{t("All Products")}
+								{selectedCategory
+									? `${selectedCategory.title[locale]}`
+									: t("All Products")}
 							</h3>
 							<div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
 								{products
-									.filter(
-										(product) =>
-											selectedCategory?.id === product.categoryId ||
-											!selectedCategory
-									)
+									.filter((product) => {
+										if (!selectedCategory) return true;
+
+										// Check if it's a main category or subcategory
+										const mainCategory = categories.find(
+											(cat) => cat.id === selectedCategory.id
+										);
+
+										if (mainCategory?.subCategory) {
+											// If it's a main category, show all products from its subcategories
+											return mainCategory.subCategory.some(
+												(sub) => sub.id === product.categoryId
+											);
+										}
+
+										// If it's a subcategory, show products with that categoryId
+										return product.categoryId === selectedCategory.id;
+									})
 									.map((product, index) => (
 										<ProductCard
 											key={index}

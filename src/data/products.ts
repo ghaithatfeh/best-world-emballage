@@ -24,7 +24,7 @@ export interface Product {
 export const products: Product[] = [
 	{
 		code: "0303",
-		categoryId: 1,
+		categoryId: 3,
 		title: {
 			en: "Table Spoon",
 			ar: "العاشق كبيرة",
@@ -47,7 +47,7 @@ export const products: Product[] = [
 	},
 	{
 		code: "0307",
-		categoryId: 1,
+		categoryId: 3,
 		title: {
 			en: "Coffee Spoon",
 			ar: "العاشق صغيرة",
@@ -69,7 +69,7 @@ export const products: Product[] = [
 	},
 	{
 		code: "0307",
-		categoryId: 1,
+		categoryId: 3,
 		title: {
 			en: "VIP Coffee Spoon",
 			ar: "العاشق صغيرة (مرتبة)",
@@ -91,13 +91,13 @@ export const products: Product[] = [
 	},
 	{
 		code: "0311",
-		categoryId: 2,
+		categoryId: 4,
 		title: {
 			en: "Fork",
 			ar: "الفرشيت",
 			fr: "Fourchette",
 		},
-		material: {
+	material: {
 			en: "Plastic",
 			ar: "بلاستك",
 			fr: "Plastique",
@@ -113,7 +113,7 @@ export const products: Product[] = [
 	},
 	{
 		code: "0309",
-		categoryId: 3,
+		categoryId: 5,
 		title: {
 			en: "Knife",
 			ar: "الموس",
@@ -136,7 +136,7 @@ export const products: Product[] = [
 	// straws
 	{
 		code: "0101",
-		categoryId: 4,
+		categoryId: 6,
 		title: {
 			en: "Straight Straw",
 			ar: "ليباي مستقيمة",
