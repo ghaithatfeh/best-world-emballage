@@ -10,7 +10,7 @@ import { FaPaperPlane } from "react-icons/fa";
 import { Link } from "@/i18n/routing";
 import ProductDetailsDialog from "./ProductDetailsDialog";
 import { useState } from "react";
-import { products, type Product } from "@/data/products";
+import { Product } from "@/types/product";
 
 const AboutSection = () => {
 	const t = useTranslations();
@@ -53,7 +53,7 @@ const AboutSection = () => {
 					modules={[Autoplay, Pagination]}
 					className="products-swiper"
 				>
-					{products.filter((product) => product.topProducts).map((product, index) => (
+					{/* {products.filter((product) => product.topProducts).map((product, index) => (
 						<SwiperSlide key={index} className="pb-16">
 							<ProductCard
 								code={product.code}
@@ -64,7 +64,7 @@ const AboutSection = () => {
 								onClick={() => handleProductClick(product)}
 							/>
 						</SwiperSlide>
-					))}
+					))} */}
 				</Swiper>
 
 				{/* Product Details Dialog */}

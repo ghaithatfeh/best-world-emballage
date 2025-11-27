@@ -5,8 +5,7 @@ import ProductCard from "@/components/ProductCard";
 import FeaturedProductCard from "@/components/FeaturedProductCard";
 import ProductDetailsDialog from "@/components/ProductDetailsDialog";
 import { useTranslations, useLocale } from "next-intl";
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
 import {
 	Accordion,
 	AccordionContent,
@@ -17,27 +16,61 @@ import PageEnd from "@/components/PageEnd";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
-import { products, type Product } from "@/data/products";
-import { categories, type Category } from "@/data/categories";
+import { Product } from "@/types/product";
+import { Category } from "@/types/category";
 import { Separator } from "@/components/ui/separator";
+import { toast } from "react-hot-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const ProductsPage = () => {
 	const t = useTranslations();
 	const locale = useLocale() as "en" | "ar" | "fr";
-	const [selectedCategory, setSelectedCategory] = useState<Category | null>(
-		null
-	);
-	const [dialogOpen, setDialogOpen] = useState(false);
+
+	const [categories, setCategories] = useState<Category[]>([]);
+	const [products, setProducts] = useState<Product[]>([]);
+	const [loading, setLoading] = useState(false);
+
+	const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
 	const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+	const [dialogOpen, setDialogOpen] = useState(false);
 
 	const handleProductClick = (product: Product) => {
 		setSelectedProduct(product);
 		setDialogOpen(true);
 	};
 
-	const handleClearAll = () => {
-		setSelectedCategory(null);
+	const fetchData = async () => {
+		setLoading(true);
+		const categoriesResult = await supabase
+			.from("categories")
+			.select("*, sub_categories:categories(*, products(*))")
+			.is("parent_id", null);
+
+		if (categoriesResult.error) {
+			toast.error("Failed to fetch categories");
+			console.error("Categories error:", categoriesResult.error);
+		} else {
+			const data = categoriesResult.data || [];
+			setCategories(data);
+			
+			// Extract all products from nested structure
+			const allProducts: Product[] = [];
+			data.forEach((category) => {
+				category.sub_categories?.forEach((subCategory) => {
+					if (subCategory.products) {
+						allProducts.push(...subCategory.products);
+					}
+				});
+			});
+			setProducts(allProducts);
+		}
+
+		setLoading(false);
 	};
+
+	useEffect(() => {
+		fetchData();
+	}, []);
 
 	return (
 		<main className="relative">
@@ -53,14 +86,6 @@ const ProductsPage = () => {
 									<h3 className="text-[#333333] text-xl font-semibold">
 										{t("Categories")}
 									</h3>
-									{/* <Button
-										variant="ghost"
-										size="sm"
-										onClick={handleClearAll}
-										className="bg-[#4A5568] hover:bg-[#4A5568]/90 text-white rounded-full px-4 h-9 text-sm"
-									>
-										{t("Clear All")}
-									</Button> */}
 								</div>
 
 								{/* All Categories Option */}
@@ -101,7 +126,7 @@ const ProductsPage = () => {
 										>
 											<AccordionTrigger className="text-[#333333] hover:text-[#DC2626] hover:no-underline py-3">
 												<span className="text-base font-medium">
-													{mainCategory.title[locale]}
+													{mainCategory[`title_${locale}`]}
 												</span>
 											</AccordionTrigger>
 											<AccordionContent>
@@ -133,7 +158,7 @@ const ProductsPage = () => {
 													</label>
 
 													{/* Subcategories */}
-													{mainCategory.subCategory?.map((subCategory) => (
+													{mainCategory.sub_categories?.map((subCategory: Category) => (
 														<label
 															key={subCategory.id}
 															className="flex items-center gap-3 cursor-pointer group"
@@ -159,7 +184,7 @@ const ProductsPage = () => {
 																		: "text-[#6B7280]"
 																} group-hover:text-[#DC2626] transition-colors`}
 															>
-																{subCategory.title[locale]}
+																{subCategory[`title_${locale}`]}
 															</span>
 														</label>
 													))}
@@ -190,19 +215,19 @@ const ProductsPage = () => {
 									modules={[Autoplay]}
 								>
 									{products
-										.filter((product) => product.isFeatured)
+										.filter((product) => product.is_featured)
 										.map((product, index) => (
 											<SwiperSlide key={index} className="pb-8">
 												<FeaturedProductCard
 													code={product.code}
-													title={product.title[locale]}
-													material={product.material[locale]}
-													length={product.length.toString()}
+													title={product[`title_${locale}`]}
+													material={product[`material_${locale}`]}
+													length={product.length?.toString() || ""}
 													weight={product.weight?.toString()}
 													diameter={product.diameter?.toString()}
-													image={product.images[0]}
-													colors={product.colors.slice(0, 3)}
-													additionalColors={product.additionalColors}
+													image={product.images?.[0] || ""}
+													colors={product.colors?.slice(0, 3) || []}
+													additionalColors={product.additional_colors || 0}
 													onClick={() => handleProductClick(product)}
 												/>
 											</SwiperSlide>
@@ -213,19 +238,19 @@ const ProductsPage = () => {
 							{/* Desktop Grid */}
 							<div className="hidden sm:grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
 								{products
-									.filter((product) => product.isFeatured)
+									.filter((product) => product.is_featured)
 									.map((product, index) => (
 										<FeaturedProductCard
 											key={index}
 											code={product.code}
-											title={product.title[locale]}
-											material={product.material[locale]}
-											length={product.length.toString()}
+											title={product[`title_${locale}`]}
+											material={product[`material_${locale}`]}
+											length={product.length?.toString() || ""}
 											weight={product.weight?.toString()}
 											diameter={product.diameter?.toString()}
-											image={product.images[0]}
-											colors={product.colors.slice(0, 3)}
-											additionalColors={product.additionalColors}
+											image={product.images?.[0] || ""}
+											colors={product.colors?.slice(0, 3) || []}
+											additionalColors={product.additional_colors || 0}
 											onClick={() => handleProductClick(product)}
 										/>
 									))}
@@ -233,12 +258,12 @@ const ProductsPage = () => {
 
 							<h3 className="text-[#333333] text-xl font-semibold mb-6">
 								{selectedCategory
-									? `${selectedCategory.title[locale]}`
+									? `${selectedCategory[`title_${locale}`]}`
 									: t("All Products")}
 							</h3>
 							<div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
 								{products
-									.filter((product) => {
+									.filter((product: Product) => {
 										if (!selectedCategory) return true;
 
 										// Check if it's a main category or subcategory
@@ -246,24 +271,24 @@ const ProductsPage = () => {
 											(cat) => cat.id === selectedCategory.id
 										);
 
-										if (mainCategory?.subCategory) {
+										if (mainCategory?.sub_categories) {
 											// If it's a main category, show all products from its subcategories
-											return mainCategory.subCategory.some(
-												(sub) => sub.id === product.categoryId
+											return mainCategory.sub_categories.some(
+												(sub) => sub.id === product.category_id
 											);
 										}
 
 										// If it's a subcategory, show products with that categoryId
-										return product.categoryId === selectedCategory.id;
+										return product.category_id === selectedCategory.id;
 									})
-									.map((product, index) => (
+									.map((product: Product, index: number) => (
 										<ProductCard
 											key={index}
 											code={product.code}
-											title={product.title[locale]}
-											image={product.images[0]}
-											colors={product.colors.slice(0, 3)}
-											additionalColors={product.additionalColors}
+											title={product[`title_${locale}`]}
+											image={product.primary_image_url || ""}
+											colors={product.colors?.slice(0, 3) || []}
+											additionalColors={product.additional_colors || 0}
 											onClick={() => handleProductClick(product)}
 										/>
 									))}
