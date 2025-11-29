@@ -81,7 +81,7 @@ const AboutSection = () => {
 							{t("ten years of experience")}
 						</span>{" "}
 						{t(
-							"in this area, and we achieve our success through close cooperation with credible and powerful manufacturing companies that allow us to pursue the industrialization process directly"
+							"in this field, and we achieve our success through close cooperation with credible and powerful manufacturing companies that allow us to pursue the industrialization process directly"
 						)}
 						.
 					</p>

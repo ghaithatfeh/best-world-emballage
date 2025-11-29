@@ -27,7 +27,7 @@ const AboutPage = () => {
 						</p>
 						<div className="flex gap-8 xl:mt-14">
 							<div>
-								<span className="font-bold text-2xl text-gray-900">+5</span>
+								<span className="font-bold text-2xl text-gray-900">+10</span>
 								<div className="text-gray-700">{t("Year of experience")}</div>
 							</div>
 							<div>
