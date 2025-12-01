@@ -11,12 +11,15 @@ import { Link } from "@/i18n/routing";
 import ProductDetailsDialog from "./ProductDetailsDialog";
 import { useState } from "react";
 import { Product } from "@/types/product";
+import { useProducts } from "@/hooks/useProducts";
+import { ProductCardSkeleton } from "./skeletons/ProductCardSkeleton";
 
 const AboutSection = () => {
 	const t = useTranslations();
 	const locale = useLocale() as "en" | "ar" | "fr";
 	const [dialogOpen, setDialogOpen] = useState(false);
 	const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+	const { products, loading } = useProducts();
 
 	const handleProductClick = (product: Product) => {
 		setSelectedProduct(product);
@@ -30,42 +33,51 @@ const AboutSection = () => {
 		>
 			<div className="container mx-auto">
 				<Heading className="text-center mb-12">{t("Top Products")}</Heading>
-				<Swiper
-					spaceBetween={20}
-					loop={true}
-					autoplay={{
-						delay: 3000,
-						disableOnInteraction: false,
-					}}
-					pagination={{
-						clickable: true,
-						bulletClass: "swiper-pagination-bullet",
-						bulletActiveClass: "swiper-pagination-bullet-active-primary",
-					}}
-					breakpoints={{
-						768: {
-							slidesPerView: 2,
-						},
-						992: {
-							slidesPerView: 4,
-						},
-					}}
-					modules={[Autoplay, Pagination]}
-					className="products-swiper"
-				>
-					{/* {products.filter((product) => product.topProducts).map((product, index) => (
-						<SwiperSlide key={index} className="pb-16">
-							<ProductCard
-								code={product.code}
-								title={product.title[locale]}
-								image={product.images[0]}
-								colors={product.colors.slice(0, 3)}
-								additionalColors={product.additionalColors}
-								onClick={() => handleProductClick(product)}
-							/>
-						</SwiperSlide>
-					))} */}
-				</Swiper>
+				
+				{loading || products.length === 0 ? (
+					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 pb-16">
+						{[...Array(4)].map((_, i) => (
+							<ProductCardSkeleton key={i} />
+						))}
+					</div>
+				) : (
+					<Swiper
+						spaceBetween={20}
+						loop={true}
+						autoplay={{
+							delay: 3000,
+							disableOnInteraction: false,
+						}}
+						pagination={{
+							clickable: true,
+							bulletClass: "swiper-pagination-bullet",
+							bulletActiveClass: "swiper-pagination-bullet-active-primary",
+						}}
+						breakpoints={{
+							768: {
+								slidesPerView: 2,
+							},
+							992: {
+								slidesPerView: 4,
+							},
+						}}
+						modules={[Autoplay, Pagination]}
+						className="products-swiper"
+					>
+						{products.filter((product) => product.top_products).map((product, index) => (
+							<SwiperSlide key={index} className="pb-16">
+								<ProductCard
+									code={product.code}
+									title={product[`title_${locale}`]}
+									image={product.primary_image_url || ""}
+									colors={product.colors?.slice(0, 3) || []}
+									additionalColors={product.additional_colors || 0}
+									onClick={() => handleProductClick(product)}
+								/>
+							</SwiperSlide>
+						))}
+					</Swiper>
+				)}
 
 				{/* Product Details Dialog */}
 				{selectedProduct && (
