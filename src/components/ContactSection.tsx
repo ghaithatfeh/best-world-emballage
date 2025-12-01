@@ -64,7 +64,7 @@ export const ContactSection = ({ withIcon = true }: { withIcon?: boolean }) => {
 			id: 3,
 			icon: <MapPinIcon className="w-5 h-5 text-white" />,
 			label: t("Location"),
-			value: t("Morocco, Al-Dar Al-Baidaa, Darb Omar, Khrebka ST"),
+			value: t("address"),
 		},
 	];
 
@@ -105,7 +105,7 @@ export const ContactSection = ({ withIcon = true }: { withIcon?: boolean }) => {
 										<p className="font-['Baloo_Bhaina_2',Helvetica] font-normal text-[#333333] text-sm leading-5">
 											{item.label}
 										</p>
-										<p className="font-['Baloo_Bhaina_2',Helvetica] font-semibold text-[#333333] text-base leading-6">
+										<p className="font-['Baloo_Bhaina_2',Helvetica] font-semibold text-[#333333] text-base leading-6 max-w-[350px]">
 											<span
 												dir={item.dir}
 												lang={item.dir === "ltr" ? "en" : ""}

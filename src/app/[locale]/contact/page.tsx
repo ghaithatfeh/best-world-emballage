@@ -29,7 +29,7 @@ const ContactPage = () => {
 			id: 3,
 			icon: <MapPinIcon className="w-5 h-5 text-white" />,
 			label: t("Location"),
-			value: t("Morocco, Al-Dar Al-Baidaa, Darb Omar, Khrebka ST"),
+			value: t("address"),
 		},
 	];
 
