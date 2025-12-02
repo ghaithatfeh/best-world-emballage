@@ -67,7 +67,7 @@ const Header = () => {
 					<a href={socialLinks.facebook} target="_blank" rel="noopener noreferrer">
 						<FaFacebook className="w-5 h-5 text-white hover:text-blue-400 transition" />
 					</a>
-					<a href="#" target="_blank" rel="noopener noreferrer">
+					<a href="#" target="" rel="noopener noreferrer">
 						<FaInstagram className="w-5 h-5 text-white hover:text-pink-400 transition" />
 					</a>
 					{/* <a href="#" target="_blank" rel="noopener noreferrer">
