@@ -30,6 +30,7 @@ const useLinks = () => {
 
 	const socialLinks = {
 		facebook: "https://www.facebook.com/profile.php?id=100076417875791",
+		whatsapp: "https://wa.me/212696644134",
 	};
 
 	return { navLinks, socialLinks };
