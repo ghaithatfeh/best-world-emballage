@@ -194,7 +194,7 @@ const ProductDetailsDialog = ({
 									<div>
 										<p className="text-sm text-[#6B7280]">{t("Phone")}</p>
 										<p className="font-semibold text-[#333333]" dir="ltr">
-											+212 520 397 044
+											+212 696 644 134
 										</p>
 									</div>
 								</div>

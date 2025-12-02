@@ -15,7 +15,7 @@ const ContactPage = () => {
 			id: 1,
 			icon: <PhoneIcon className="w-5 h-5 text-white" />,
 			label: t("Phone"),
-			value: "+212 520 397 044",
+			value: "+212 696 644 134",
 			dir: "ltr",
 		},
 		{
